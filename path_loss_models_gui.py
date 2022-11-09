@@ -188,7 +188,7 @@ def scenario_click(event):
         area_combo.pack()
         num_label.pack(pady=2)
         num_combo.pack()
-        d_combo.config(values=list(range(1, 101)))
+        d_combo.config(values=list(range(1, 501)))
     elif scenario == scenarios_options[1]:
         delete_labels()
         environment_options = [
@@ -580,8 +580,8 @@ def range_click(event):
     is_UHF_propagation = False
     is_SHF_propagation = False
     is_EHF_propagation = False
+    path_loss_button.pack_forget()
     if range_combo.get() == "UHF propagation":
-        path_loss_button.pack_forget()
         p_total_label.pack_forget()
         p_total.pack_forget()
         density_label.pack_forget()
@@ -623,7 +623,6 @@ def range_click(event):
         density.pack_forget()
         temp_label.pack_forget()
         temp.pack_forget()
-        path_loss_button.pack_forget()
         e_label.pack_forget()
         e_combo.pack_forget()
         is_SHF_propagation = True
@@ -660,7 +659,6 @@ def range_click(event):
         f_combo.pack_forget()
         traffic_label.pack_forget()
         traffic_combo.pack_forget()
-        path_loss_button.pack_forget()
         height_1.config(values=list(range(1, 11)))
         height_1.current(0)
         height_2.config(values=list(range(1, 11)))
@@ -892,11 +890,12 @@ def calculate_below_rooftop_LoS(d, fq):
         # print(effective_road_height)
         if effective_road_height == -1:
             curr_path_loss = -1
+            return curr_path_loss
         elif effective_road_height == 1000:
             breakpoint_distance = 4 * h1 * h2 / wl
         else:
             breakpoint_distance = 4 * (h1 - effective_road_height) * (h2 - effective_road_height) / wl
-        if effective_road_height != -1 and h1 > effective_road_height and h2 > effective_road_height:
+        if h1 > effective_road_height and h2 > effective_road_height:
             r_s = 20  # experimentally derived
             if d < r_s:
                 breakpoint_loss = abs(20 * math.log(
@@ -1100,7 +1099,7 @@ def n_th_loss_list(turn_dist):
 def calculate_path_loss():
     scenario = scenario_combo.get()
     path_loss_root = ctk.CTkToplevel(root)
-    path_loss_root.geometry("350x300")
+    path_loss_root.geometry("350x500")
     path_loss_root.title("Path Loss")
     global path_loss, variance, l_urban, breakpoint_distance, l_c, l_att
     if scenario == "Indoor Transmission Loss Model":
@@ -1263,7 +1262,7 @@ def calculate_path_loss():
         n = int(num_of_corners.get())
         sleep(1)
         for i in range(1, n + 1):
-            print("for "+str(i)+" corner: ")
+            print("for " + str(i) + " corner: ")
             x_1 = input("Please enter the distance between first corner and Station 1 in meters:")
             x_2 = input("Please enter the distance between first corner and second corner in meters:")
             x_3 = input("Please enter the distance between second corner and Station 2 in meters:")
@@ -1295,7 +1294,7 @@ def calculate_path_loss():
             sleep(1)
             n = int(num_of_corners.get())
             for i in range(1, n + 1):
-                print("for "+str(i)+" corner: ")
+                print("for " + str(i) + " corner: ")
                 road_angle = input("Select road angle of the corner in degrees")
                 r_d_t = input("Select road distance from transmitter to the corner in meters")
                 r_d_r = input("Select road distance from corner to the receiver in meters")
@@ -1307,7 +1306,6 @@ def calculate_path_loss():
         path_loss = -10 * math.log(
             1 / math.pow(10, path_loss_along_road / 10) + 1 / math.pow(10, loss_between_houses / 10) + 1 / math.pow(10,
                                                                                                                     over_roof_propagation_loss / 10))
-
     if path_loss == -1:
         note_label_3.pack()
         return
@@ -1337,6 +1335,26 @@ def run_click(event, current_root, num):
         h_label = ctk.CTkLabel(current_root, text="h(" + str(i) + "): " + str(h))
         h_label.pack()
     io.savemat('channel_coefficients.mat', {"channel_coefficients": channel_coefficients})
+    rate_computation(channel_coefficients, runs, current_root)
+
+
+def rate_computation(coefficients, n, current_root):
+    bandwidth = 1  # in MHz
+    power = 1  # in W
+    sigma_sq = math.pow(10, -11)
+    rate = []
+    sum_of_rate = 0
+    for i in range(0, n):
+        r = bandwidth * math.log(1 + (power * abs(coefficients[i]) / sigma_sq), 2)
+        rate.append(r)
+        r_label = ctk.CTkLabel(current_root, text="R(" + str(i) + "): " + str(r) + " bps")  # bits per second
+        r_label.pack()
+    for r in rate:
+        sum_of_rate += r
+    avg_rate = sum_of_rate / n
+    avg_rate_text = "Average Rate: " + str(avg_rate) + " bps"
+    avg_rate_label = ctk.CTkLabel(current_root, text=avg_rate_text)
+    avg_rate_label.pack()
 
 
 scenario_label = ctk.CTkLabel(root, text="Please select the scenario type:", text_font=("Roboto", 11))
