@@ -87,7 +87,7 @@ turn_distances = []
 
 
 def delete_labels():
-    note_label_3.pack_forget()
+    angle_2.pack_forget()
     angle_2_label.pack_forget()
     corner_angle.pack_forget()
     sidewalk_label.pack_forget()
@@ -131,7 +131,6 @@ def delete_labels():
     wavelength_label.pack_forget()
     wavelength.pack_forget()
     corner_angle_label.pack_forget()
-    corner_angle.pack_forget()
     height_label_1.pack_forget()
     height_1.pack_forget()
     height_label_2.pack_forget()
@@ -243,6 +242,7 @@ def scenario_click(event):
         height_2.pack()
         corner_angle_label.pack()
         corner_angle.pack()
+        corner_angle.current(0)
         d_2_label.pack()
         d_combo.config(values=list(range(1, 1001)))
         d_combo.pack()
@@ -250,8 +250,10 @@ def scenario_click(event):
         delete_labels()
         corner_angle_label.pack()
         corner_angle.pack()
+        corner_angle.current(0)
         f_label.pack()
         f_1_combo.config(values=list(np.round(np.arange(0.8, 38.1, 0.1), 1)))
+        f_1_combo.current(0)
         f_1_combo.bind("<<ComboboxSelected>>", f_below_rooftop_click)
         f_1_combo.pack()
         street_width_label_1.pack()
@@ -288,7 +290,7 @@ def scenario_click(event):
         wavelength_label.pack()
         wavelength.pack()
         angle_2_label.pack()
-        corner_angle.pack()
+        angle_2.pack()
         sidewalk_label.pack()
         sidewalk.pack()
         street_width_label.pack()
@@ -307,7 +309,7 @@ def scenario_click(event):
         street_width_first.current(0)
         street_width_first.pack()
         angle_2_label.pack()
-        corner_angle.pack()
+        angle_2.pack()
         wavelength_label.pack()
         wavelength.pack()
         height_label_1.pack()
@@ -324,9 +326,11 @@ def scenario_click(event):
         avg_height_combo.pack()
         d_3_label.pack()
         d_combo.config(values=list(range(10, 1001)))
+        d_combo.current(0)
         d_combo.pack()
         f_label.pack()
         f_combo.config(values=list(np.round(np.arange(0.8, 38.1, 0.1), 1)))
+        f_combo.current(0)
         f_combo.pack()
         path_loss_button.pack(pady=10)
     elif scenario == scenarios_options[9]:
@@ -365,20 +369,22 @@ def scenario_click(event):
         range_combo.config(values=["UHF propagation", "SHF propagation"])
         range_combo.pack()
         height_label_1.pack()
-        height_1.config(values=list(range(1, 11)))
+        height_1.config(values=list(range(1, 400)))
         height_1.current(0)
         height_1.pack()
         height_label_2.pack()
-        height_2.config(values=list(range(1, 11)))
+        height_2.config(values=list(range(1, 400)))
         height_2.current(0)
         height_2.pack()
     elif scenario == scenarios_options[11]:
         delete_labels()
         d_2_label.pack()
         d_combo.config(values=list(range(1, 1001)))
+        d_combo.current(0)
         d_combo.pack()
         f_label.pack()
         f_combo.config(values=list(range(2, 27)))
+        f_combo.current(0)
         f_combo.pack()
         wavelength_label.pack()
         wavelength.pack()
@@ -527,19 +533,21 @@ def e_below_rooftop_to_street_1_turn_click(event):
 
 
 def avg_height_click(event):
-    f_combo.pack_forget()
-    fr_label.pack_forget()
-    path_loss_button.pack_forget()
-    h1 = float(height_1.get())
-    hr = float(avg_height_combo.get())
-    w2 = float(sidewalk.get())
-    if h1 < hr and w2 < 10:
-        f_combo.config(values=list(range(2000, 16001)))
-    else:
-        f_combo.config(values=list(range(800, 5001)))
-    fr_label.pack()
-    f_combo.pack()
-    path_loss_button.pack(pady=10)
+    if scenario_combo.get() == scenarios_options[6]:
+        f_combo.pack_forget()
+        fr_label.pack_forget()
+        path_loss_button.pack_forget()
+        h1 = float(height_1.get())
+        hr = float(avg_height_combo.get())
+        w2 = float(sidewalk.get())
+        if h1 < hr and w2 < 10:
+            f_combo.config(values=list(range(2000, 16001)))
+        else:
+            f_combo.config(values=list(range(800, 5001)))
+        f_combo.current(0)
+        fr_label.pack()
+        f_combo.pack()
+        path_loss_button.pack(pady=10)
 
 
 def f_below_rooftop_click(event):
@@ -593,9 +601,9 @@ def range_click(event):
         traffic_label.pack_forget()
         traffic_combo.pack_forget()
         is_UHF_propagation = True
-        height_1.config(values=list(range(1, 11)))
+        height_1.config(values=list(range(1, 400)))
         height_1.current(0)
-        height_2.config(values=list(range(1, 11)))
+        height_2.config(values=list(range(1, 400)))
         height_2.current(0)
         if scenario == "Site Specific Model for below rooftop LoS" or scenario == "Site Specific Model from below " \
                                                                                   "rooftop to street level LoS":
@@ -659,9 +667,9 @@ def range_click(event):
         f_combo.pack_forget()
         traffic_label.pack_forget()
         traffic_combo.pack_forget()
-        height_1.config(values=list(range(1, 11)))
+        height_1.config(values=list(range(1, 400)))
         height_1.current(0)
-        height_2.config(values=list(range(1, 11)))
+        height_2.config(values=list(range(1, 400)))
         height_2.current(0)
         is_EHF_propagation = True
         environment_options = [
@@ -684,15 +692,12 @@ def range_click(event):
 
 
 def area_click(event):
-    global power_loss_coefficient, floor_penetration_loss_factor
     d_combo.current(0)
     if area_combo.get() == "Residential":
         num_combo.config(values=list(range(1, 10)))
         num_combo.current(0)
         f_combo.config(values=list(np.round(np.arange(1.8, 2.1, 0.1), 1)))
         f_combo.current(0)
-        power_loss_coefficient = 28
-        floor_penetration_loss_factor = 4 * int(num_combo.get())
     elif area_combo.get() == "Office":
         num_combo.config(values=list(range(1, 4)))
         num_combo.current(0)
@@ -700,24 +705,11 @@ def area_click(event):
         f_options.insert(0, 0.9)
         f_combo.config(values=f_options)
         f_combo.current(0)
-        if f_combo.get() == 0.9:
-            power_loss_coefficient = 33
-            if num_combo.get() == 1:
-                floor_penetration_loss_factor = 9
-            elif num_combo.get() == 2:
-                floor_penetration_loss_factor = 19
-            elif num_combo.get() == 3:
-                floor_penetration_loss_factor = 24
-        else:
-            power_loss_coefficient = 30
-            floor_penetration_loss_factor = 15 + 4 * (int(num_combo.get()) - 1)
     elif area_combo.get() == "Commercial":
         num_combo.config(values=list(range(1, 10)))
         num_combo.current(0)
         f_combo.config(values=list(np.round(np.arange(1.8, 2.1, 0.1), 1)))
         f_combo.current(0)
-        power_loss_coefficient = 22
-        floor_penetration_loss_factor = 6 + 3 * (int(num_combo.get()) - 1)
     d_label.pack()
     d_combo.current(0)
     d_combo.pack()
@@ -1103,6 +1095,25 @@ def calculate_path_loss():
     path_loss_root.title("Path Loss")
     global path_loss, variance, l_urban, breakpoint_distance, l_c, l_att
     if scenario == "Indoor Transmission Loss Model":
+        global power_loss_coefficient, floor_penetration_loss_factor
+        if area_combo.get() == "Residential":
+            power_loss_coefficient = 28
+            floor_penetration_loss_factor = 4 * int(num_combo.get())
+        elif area_combo.get() == "Office":
+            if f_combo.get() == 0.9:
+                power_loss_coefficient = 33
+                if num_combo.get() == 1:
+                    floor_penetration_loss_factor = 9
+                elif num_combo.get() == 2:
+                    floor_penetration_loss_factor = 19
+                elif num_combo.get() == 3:
+                    floor_penetration_loss_factor = 24
+            else:
+                power_loss_coefficient = 30
+                floor_penetration_loss_factor = 15 + 4 * (int(num_combo.get()) - 1)
+        elif area_combo.get() == "Commercial":
+            power_loss_coefficient = 22
+            floor_penetration_loss_factor = 6 + 3 * (int(num_combo.get()) - 1)
         if float(d_combo.get()) >= 5:
             path_loss = 20 * math.log(float(f_combo.get()), 10) + power_loss_coefficient * math.log(
                 float(d_combo.get()),
@@ -1186,7 +1197,7 @@ def calculate_path_loss():
         ds = settled_field_distance(d, wl, hr, h1)
         l = float(length.get())
         b = float(avg_b.get())
-        phi = float(corner_angle.get())
+        phi = float(angle_2.get())
         global street_orientation_factor
         if 0 <= phi < 35:
             street_orientation_factor = -10 + 0.354 * phi
@@ -1226,7 +1237,7 @@ def calculate_path_loss():
             path_loss = bf_loss
     elif scenario == "Site Specific Model for above rooftop in Suburban Scenario":
         w = float(street_width_first.get())
-        phi = float(corner_angle.get())
+        phi = float(angle_2.get())
         wl = float(wavelength.get())
         hr = float(avg_height_combo.get())
         h1 = float(height_1.get())
@@ -1272,9 +1283,7 @@ def calculate_path_loss():
         curr_loss = n_th_loss_list(turn_distances)
         curr_sum = 0
         for val in curr_loss:
-            # print('val', val)
             curr_sum += math.pow(math.pow(10, val / 10), -1)
-            # print(curr_sum)
         path_loss = -10 * math.log(curr_sum, 10)
         print("Please go to GUI to check path loss and channel coefficients")
     elif scenario == scenarios_options[11]:
@@ -1307,6 +1316,8 @@ def calculate_path_loss():
             1 / math.pow(10, path_loss_along_road / 10) + 1 / math.pow(10, loss_between_houses / 10) + 1 / math.pow(10,
                                                                                                                     over_roof_propagation_loss / 10))
     if path_loss == -1:
+        path_loss_root.geometry("150x50")
+        note_label_3 = ctk.CTkLabel(path_loss_root, text="Invalid parameters", text_font=("Roboto", 11))
         note_label_3.pack()
         return
     variance = math.pow(10, -1 * (path_loss / 10))
@@ -1415,12 +1426,12 @@ range_combo.set("Select frequency range")
 range_combo.bind("<<ComboboxSelected>>", range_click)
 
 height_label_1 = ctk.CTkLabel(root, text="Enter height of Station 1 in meters: ", text_font=("Roboto", 11))
-height_1 = ttk.Combobox(root, values=list(range(1, 11)))
+height_1 = ttk.Combobox(root, values=list(range(1, 400)))
 height_1['state'] = 'readonly'
 height_1.set("Select station 1 height")
 
 height_label_2 = ctk.CTkLabel(root, text="Enter height of Station 2 in meters: ", text_font=("Roboto", 11))
-height_2 = ttk.Combobox(root, values=list(range(1, 11)))
+height_2 = ttk.Combobox(root, values=list(range(1, 400)))
 height_2['state'] = 'readonly'
 height_2.set("Select station 2 height")
 
@@ -1452,8 +1463,12 @@ avg_height_combo['state'] = 'readonly'
 
 angle_2_label = ctk.CTkLabel(root, text="Please select angle of orientation of the street in degrees:",
                              text_font=("Roboto", 11))
+angle_2 = ttk.Entry(root, textvariable=DoubleVar)
+
 corner_angle_label = ctk.CTkLabel(root, text="Enter corner angle in radians: ", text_font=("Roboto", 11))
-corner_angle = ttk.Entry(root, textvariable=DoubleVar)
+corner_angle = ttk.Combobox(root, values=list(np.round(np.arange(0.7, 3.1, 0.1), 1)))
+corner_angle['state'] = 'readonly'
+corner_angle.current(0)
 
 wavelength_label = ctk.CTkLabel(root, text="Enter carrier wavelength in meters: ", text_font=("Roboto", 11))
 wavelength = ttk.Entry(root, textvariable=DoubleVar)
@@ -1492,7 +1507,6 @@ note_label = ctk.CTkLabel(root, text="Height of station 2 should be less than th
                           text_font=("Roboto", 9))
 note_label_2 = ctk.CTkLabel(root, text="Please go to terminal for entering values of corner distances after clicking "
                                        "on path loss button", text_font=("Roboto", 11))
-note_label_3 = ctk.CTkLabel(root, text="Invalid parameters", text_font=("Roboto", 11))
 
 x_1_label = ctk.CTkLabel(root, text="Please select the distance between corner and Station 1 in meters:",
                          text_font=("Roboto", 11))
