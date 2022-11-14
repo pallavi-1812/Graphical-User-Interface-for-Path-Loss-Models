@@ -1,4 +1,5 @@
 import customtkinter
+from IndoorTransmissionLossFunction import indoor_transmission
 
 root = customtkinter.CTk()
 root.geometry("900x500")
@@ -6,7 +7,7 @@ root.geometry("900x500")
 
 button_1 = customtkinter.CTkButton(root, fg_color="#242F9B", text_color="white", hover_color="#352F9B", width=200,
                                    height=45,
-                                   text="Indoor Transmission Loss Model")
+                                   text="Indoor Transmission Loss Model", command=indoor_transmission)
 button_1.grid(row=0, column=0, padx=60, pady=70)
 
 button_2 = customtkinter.CTkButton(root, fg_color="#711A75", text_color="white", hover_color="#821A75", width=200,
