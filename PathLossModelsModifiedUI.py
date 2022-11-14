@@ -1,5 +1,6 @@
 import customtkinter
 from IndoorTransmissionLossFunction import indoor_transmission
+from SiteGeneralAboveRooftopFunction import site_general_above_rooftop
 
 root = customtkinter.CTk()
 root.geometry("900x500")
@@ -12,7 +13,7 @@ button_1.grid(row=0, column=0, padx=60, pady=70)
 
 button_2 = customtkinter.CTkButton(root, fg_color="#711A75", text_color="white", hover_color="#821A75", width=200,
                                    height=45,
-                                   text="Site General Model for above rooftop")
+                                   text="Site General Model for above rooftop", command=site_general_above_rooftop)
 button_2.grid(row=1, column=0, padx=60, pady=70)
 
 button_3 = customtkinter.CTkButton(root, fg_color="#A760FF", text_color="white", hover_color="#B860FF", width=200,
