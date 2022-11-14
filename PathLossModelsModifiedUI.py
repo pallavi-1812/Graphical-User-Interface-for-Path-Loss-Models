@@ -3,6 +3,7 @@ from IndoorTransmissionLossFunction import indoor_transmission
 from SiteGeneralAboveRooftopFunction import site_general_above_rooftop
 from SiteGeneralBelowRooftopFunction import site_general_below_rooftop
 from SiteGeneralBelowRooftopToStreetFunction import site_general_below_rooftop_to_street
+from SiteSpecificBelowRooftopLoSFunction import site_specific_below_rooftop_LoS
 
 root = customtkinter.CTk()
 root.geometry("900x500")
@@ -31,7 +32,8 @@ button_4.grid(row=3, column=0, padx=60, pady=70)
 
 button_5 = customtkinter.CTkButton(root, fg_color="#764AF1", text_color="white", hover_color="#874AF1", width=200,
                                    height=45,
-                                   text="Site Specific Model for below rooftop LoS")
+                                   text="Site Specific Model for below rooftop LoS",
+                                   command=site_specific_below_rooftop_LoS)
 button_5.grid(row=0, column=1, padx=50, pady=70)
 
 button_6 = customtkinter.CTkButton(root, fg_color="#242F9B", text_color="white", hover_color="#352F9B", width=200,
