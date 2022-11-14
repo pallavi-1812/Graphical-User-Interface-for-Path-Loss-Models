@@ -1,10 +1,10 @@
 from tkinter import ttk
 from tkinter import *
+import customtkinter as ctk
 import math
 from oxygenAndWaterAttenuation import find_oxygen_attenuation
 from oxygenAndWaterAttenuation import find_water_attenuation
 import numpy as np
-import customtkinter as ctk
 from scipy import io
 
 
@@ -303,24 +303,16 @@ def site_specific_below_rooftop_LoS():
     traffic_combo.current(0)
 
     wavelength_label = ctk.CTkLabel(root, text="Enter carrier wavelength in meters: ", text_font=("Roboto", 11))
-    wavelength_label.pack()
     wavelength = ttk.Entry(root, textvariable=DoubleVar)
-    wavelength.pack()
 
     temp_label = ctk.CTkLabel(root, text="Enter mean temperature in celsius: ", text_font=("Roboto", 11))
-    temp_label.pack()
     temp = ttk.Entry(root, textvariable=DoubleVar)
-    temp.pack()
 
     density_label = ctk.CTkLabel(root, text="Enter water vapour density in g/m3: ", text_font=("Roboto", 11))
-    density_label.pack()
     density = ttk.Entry(root, textvariable=DoubleVar)
-    density.pack()
 
     p_total_label = ctk.CTkLabel(root, text="Enter total air pressure in hPa: ", text_font=("Roboto", 11))
-    p_total_label.pack()
     p_total = ttk.Entry(root, textvariable=DoubleVar)
-    p_total.pack()
 
     path_loss_button = ctk.CTkButton(root, text="Calculate Path Loss", border_width=2,
                                      command=calculate_path_loss)
