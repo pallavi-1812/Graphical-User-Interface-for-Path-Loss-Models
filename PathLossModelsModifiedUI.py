@@ -5,6 +5,7 @@ from SiteGeneralBelowRooftopFunction import site_general_below_rooftop
 from SiteGeneralBelowRooftopToStreetFunction import site_general_below_rooftop_to_street
 from SiteSpecificBelowRooftopLoSFunction import site_specific_below_rooftop_LoS
 from SiteSpecificBelowRooftopNLoSFunction import site_specific_below_rooftop_NLoS
+from SiteSpecificAboveRooftopUrbanFunction import site_specific_above_rooftop_urban
 
 root = customtkinter.CTk()
 root.geometry("900x500")
@@ -45,7 +46,8 @@ button_6.grid(row=1, column=1, padx=50, pady=70)
 
 button_7 = customtkinter.CTkButton(root, fg_color="#711A75", text_color="white", hover_color="#821A75", width=200,
                                    height=45,
-                                   text="Site Specific Model for above rooftop in Urban Scenario")
+                                   text="Site Specific Model for above rooftop in Urban Scenario",
+                                   command=site_specific_above_rooftop_urban)
 button_7.grid(row=2, column=1, padx=50, pady=70)
 
 button_8 = customtkinter.CTkButton(root, fg_color="#A760FF", text_color="white", hover_color="#B860FF", width=200,
