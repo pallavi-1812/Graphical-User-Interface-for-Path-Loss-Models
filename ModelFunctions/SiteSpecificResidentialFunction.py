@@ -127,7 +127,7 @@ def site_specific_residential():
             channel_coefficients.append(h)
             h_label = ctk.CTkLabel(current_root, text="h(" + str(i) + "): " + str(h))
             h_label.pack()
-        io.savemat('channel_coefficients_site_specific_residential_loss.mat',
+        io.savemat('../channel_coefficients_site_specific_residential_loss.mat',
                    {"channel_coefficients": channel_coefficients})
 
     d_label = ctk.CTkLabel(root, text="Please select the distance between two terminals in meters:", text_font=("Roboto", 11))
