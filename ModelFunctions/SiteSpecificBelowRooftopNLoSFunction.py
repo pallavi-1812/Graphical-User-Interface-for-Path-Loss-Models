@@ -4,8 +4,8 @@ import customtkinter as ctk
 import math
 import numpy as np
 from scipy import io
-from GUIs.ModelFunctions.oxygenAndWaterAttenuation import find_oxygen_attenuation
-from GUIs.ModelFunctions.oxygenAndWaterAttenuation import find_water_attenuation
+from GUIs.ModelFunctions.Functions.oxygenAndWaterAttenuation import find_oxygen_attenuation
+from GUIs.ModelFunctions.Functions.oxygenAndWaterAttenuation import find_water_attenuation
 
 
 def site_specific_below_rooftop_NLoS():

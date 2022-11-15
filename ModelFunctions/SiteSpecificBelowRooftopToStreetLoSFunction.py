@@ -2,8 +2,8 @@ from tkinter import ttk
 from tkinter import *
 import customtkinter as ctk
 import math
-from GUIs.ModelFunctions.oxygenAndWaterAttenuation import find_oxygen_attenuation
-from GUIs.ModelFunctions.oxygenAndWaterAttenuation import find_water_attenuation
+from GUIs.ModelFunctions.Functions.oxygenAndWaterAttenuation import find_oxygen_attenuation
+from GUIs.ModelFunctions.Functions.oxygenAndWaterAttenuation import find_water_attenuation
 import numpy as np
 from scipy import io
 
