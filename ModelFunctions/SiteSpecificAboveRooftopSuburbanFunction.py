@@ -4,6 +4,7 @@ import customtkinter as ctk
 import math
 import numpy as np
 from scipy import io
+from GUIs.ModelFunctions.Functions.rateLevel import rate_computation
 
 
 def site_specific_above_rooftop_suburban():
@@ -128,6 +129,7 @@ def site_specific_above_rooftop_suburban():
             h_label.pack()
         io.savemat('channel_coefficients_site_specific_above_rooftop_suburban_loss.mat',
                    {"channel_coefficients": channel_coefficients})
+        rate_computation(channel_coefficients, runs, current_root)
 
     street_width_label = ctk.CTkLabel(root, text="Enter width of the street in meters: ", text_font=("Roboto", 11))
     street_width_label.pack()

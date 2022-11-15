@@ -3,6 +3,7 @@ import customtkinter as ctk
 from scipy import io
 import math
 import numpy as np
+from GUIs.ModelFunctions.Functions.rateLevel import rate_computation
 
 
 def indoor_transmission():
@@ -97,6 +98,7 @@ def indoor_transmission():
             h_label = ctk.CTkLabel(current_root, text="h(" + str(i) + "): " + str(h))
             h_label.pack()
         io.savemat('channel_coefficients_indoor_transmission_loss.mat', {"channel_coefficients": channel_coefficients})
+        rate_computation(channel_coefficients, runs, current_root)
 
     area_label = ctk.CTkLabel(root, text="Please select area:", text_font=("Roboto", 11))
     area_label.pack(pady=2)

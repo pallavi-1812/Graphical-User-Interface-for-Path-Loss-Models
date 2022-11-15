@@ -3,6 +3,7 @@ import customtkinter as ctk
 from scipy import io
 import math
 import numpy as np
+from GUIs.ModelFunctions.Functions.rateLevel import rate_computation
 
 
 def site_general_below_rooftop():
@@ -85,6 +86,7 @@ def site_general_below_rooftop():
             h_label.pack()
         io.savemat('channel_coefficients_site_general_below_rooftop_loss.mat',
                    {"channel_coefficients": channel_coefficients})
+        rate_computation(channel_coefficients, runs, current_root)
 
     e_label = ctk.CTkLabel(root, text="Please select environment type:", text_font=("Roboto", 11))
     e_label.pack(pady=2)

@@ -5,6 +5,7 @@ import math
 from time import sleep
 import numpy as np
 from scipy import io
+from GUIs.ModelFunctions.Functions.rateLevel import rate_computation
 
 
 def site_specific_below_rooftop_to_street_2_turn_NLoS():
@@ -228,6 +229,7 @@ def site_specific_below_rooftop_to_street_2_turn_NLoS():
             h_label.pack()
         io.savemat('channel_coefficients_site_specific_below_rooftop_NLoS_2_turn_loss.mat',
                    {"channel_coefficients": channel_coefficients})
+        rate_computation(channel_coefficients, runs, current_root)
 
     wavelength_label = ctk.CTkLabel(root, text="Enter carrier wavelength in meters: ", text_font=("Roboto", 11))
     wavelength_label.pack()

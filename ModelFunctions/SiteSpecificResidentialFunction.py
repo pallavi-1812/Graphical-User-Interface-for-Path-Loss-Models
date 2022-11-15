@@ -5,6 +5,7 @@ import math
 from time import sleep
 from scipy import io
 import numpy as np
+from GUIs.ModelFunctions.Functions.rateLevel import rate_computation
 
 
 def site_specific_residential():
@@ -129,6 +130,7 @@ def site_specific_residential():
             h_label.pack()
         io.savemat('../channel_coefficients_site_specific_residential_loss.mat',
                    {"channel_coefficients": channel_coefficients})
+        rate_computation(channel_coefficients, runs, current_root)
 
     d_label = ctk.CTkLabel(root, text="Please select the distance between two terminals in meters:", text_font=("Roboto", 11))
     d_label.pack()

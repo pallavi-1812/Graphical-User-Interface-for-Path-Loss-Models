@@ -7,6 +7,7 @@ from statistics import NormalDist
 import math
 import numpy as np
 from scipy import io
+from GUIs.ModelFunctions.Functions.rateLevel import rate_computation
 
 
 def site_general_below_rooftop_to_street():
@@ -85,6 +86,7 @@ def site_general_below_rooftop_to_street():
             h_label.pack()
         io.savemat('channel_coefficients_site_general_below_rooftop_to_street_loss.mat',
                    {"channel_coefficients": channel_coefficients})
+        rate_computation(channel_coefficients, runs, current_root)
 
     d_label = ctk.CTkLabel(root, text="Please select the distance between terminals in meters:", text_font=("Roboto", 11))
     d_label.pack()

@@ -4,6 +4,7 @@ import customtkinter as ctk
 import math
 import numpy as np
 from scipy import io
+from GUIs.ModelFunctions.Functions.rateLevel import rate_computation
 
 
 def site_specific_above_rooftop_urban():
@@ -158,6 +159,7 @@ def site_specific_above_rooftop_urban():
             h_label.pack()
         io.savemat('channel_coefficients_site_specific_above_rooftop_urban_loss.mat',
                    {"channel_coefficients": channel_coefficients})
+        rate_computation(channel_coefficients, runs, current_root)
 
     height_label_1 = ctk.CTkLabel(root, text="Enter height of Station 1 in meters: ", text_font=("Roboto", 11))
     height_label_1.pack()

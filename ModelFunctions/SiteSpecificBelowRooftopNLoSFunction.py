@@ -6,6 +6,7 @@ import numpy as np
 from scipy import io
 from GUIs.ModelFunctions.Functions.oxygenAndWaterAttenuation import find_oxygen_attenuation
 from GUIs.ModelFunctions.Functions.oxygenAndWaterAttenuation import find_water_attenuation
+from GUIs.ModelFunctions.Functions.rateLevel import rate_computation
 
 
 def site_specific_below_rooftop_NLoS():
@@ -297,6 +298,7 @@ def site_specific_below_rooftop_NLoS():
                 h_label.pack()
             io.savemat('channel_coefficients_site_specific_below_rooftop_NLoS_loss.mat',
                        {"channel_coefficients": channel_coefficients})
+            rate_computation(channel_coefficients, runs, current_root)
 
     e_label = ctk.CTkLabel(root, text="Please select environment type:", text_font=("Roboto", 11))
     e_combo = ttk.Combobox(root, values=environment_options)
