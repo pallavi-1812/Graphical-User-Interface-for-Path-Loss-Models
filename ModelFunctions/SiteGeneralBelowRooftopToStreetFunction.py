@@ -14,9 +14,6 @@ def site_general_below_rooftop_to_street():
     root.geometry("600x350")
     root.title("Site General for below rooftop to street level")
 
-    ctk.set_appearance_mode("System")
-    ctk.set_default_color_theme("blue")
-
     path_loss = 0
     variance = 0
     l_urban = 0

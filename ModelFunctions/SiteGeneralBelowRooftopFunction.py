@@ -10,9 +10,6 @@ def site_general_below_rooftop():
     root.geometry("600x250")
     root.title("Site General Path Loss Model for below Rooftop")
 
-    ctk.set_appearance_mode("System")
-    ctk.set_default_color_theme("blue")
-
     environment_options = [
         "Urban high-rise/LoS", "Urban low-rise/LoS", "Urban high-rise/NLoS", "Urban low-rise/NLoS"
     ]

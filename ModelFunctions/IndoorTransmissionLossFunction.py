@@ -10,9 +10,6 @@ def indoor_transmission():
     root.geometry("600x300")
     root.title("Indoor Transmission Loss Model")
 
-    ctk.set_appearance_mode("System")
-    ctk.set_default_color_theme("blue")
-
     area_options = [
         "Residential",
         "Office",
