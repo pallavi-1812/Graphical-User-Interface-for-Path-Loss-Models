@@ -10,6 +10,7 @@ from SiteSpecificAboveRooftopSuburbanFunction import site_specific_above_rooftop
 from SiteSpecificBelowRooftopToStreetLoSFunction import site_specific_below_rooftop_to_street_LoS
 from SiteSpecificBelowRooftopToStreetNLoS1TurnFunction import site_specific_below_rooftop_to_street_1_turn_NLoS
 from SiteSpecificBelowRooftopToStreetNLoS2TurnFunction import site_specific_below_rooftop_to_street_2_turn_NLoS
+from SiteSpecificResidentialFunction import site_specific_residential
 
 root = customtkinter.CTk()
 root.geometry("900x500")
@@ -81,7 +82,8 @@ button_11.grid(row=2, column=2, padx=50, pady=70)
 
 button_12 = customtkinter.CTkButton(root, fg_color="#711A75", text_color="white", hover_color="#821A75", width=200,
                                     height=45,
-                                    text="Site Specific Model in residential environments")
+                                    text="Site Specific Model in residential environments",
+                                    command=site_specific_residential)
 button_12.grid(row=3, column=2, padx=50, pady=70)
 
 root.mainloop()
