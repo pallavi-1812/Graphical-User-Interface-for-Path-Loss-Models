@@ -9,6 +9,7 @@ from SiteSpecificAboveRooftopUrbanFunction import site_specific_above_rooftop_ur
 from SiteSpecificAboveRooftopSuburbanFunction import site_specific_above_rooftop_suburban
 from SiteSpecificBelowRooftopToStreetLoSFunction import site_specific_below_rooftop_to_street_LoS
 from SiteSpecificBelowRooftopToStreetNLoS1TurnFunction import site_specific_below_rooftop_to_street_1_turn_NLoS
+from SiteSpecificBelowRooftopToStreetNLoS2TurnFunction import site_specific_below_rooftop_to_street_2_turn_NLoS
 
 root = customtkinter.CTk()
 root.geometry("900x500")
@@ -75,7 +76,7 @@ button_10.grid(row=1, column=2, padx=50, pady=70)
 button_11 = customtkinter.CTkButton(root, fg_color="#242F9B", text_color="white", hover_color="#352F9B", width=200,
                                     height=45,
                                     text="Site Specific Model from below rooftop to street level for 2 turn NLoS "
-                                         "propagation")
+                                         "propagation", command=site_specific_below_rooftop_to_street_2_turn_NLoS)
 button_11.grid(row=2, column=2, padx=50, pady=70)
 
 button_12 = customtkinter.CTkButton(root, fg_color="#711A75", text_color="white", hover_color="#821A75", width=200,
