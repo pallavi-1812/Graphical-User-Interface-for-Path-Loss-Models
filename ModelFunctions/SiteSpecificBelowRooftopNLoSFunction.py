@@ -3,10 +3,9 @@ from tkinter import ttk
 import customtkinter as ctk
 import math
 import numpy as np
-from scipy import io
 from GUIs.ModelFunctions.Functions.oxygenAndWaterAttenuation import find_oxygen_attenuation
 from GUIs.ModelFunctions.Functions.oxygenAndWaterAttenuation import find_water_attenuation
-from GUIs.ModelFunctions.Functions.rateLevel import rate_computation
+from GUIs.ModelFunctions.Functions.findCoefficients import calculatePathLossAndCoefficients
 
 
 def site_specific_below_rooftop_NLoS():
@@ -31,7 +30,6 @@ def site_specific_below_rooftop_NLoS():
 
     path_loss = 0
     path_loss_los = -1
-    variance = 0
     breakpoint_distance = -1
     effective_road_height = -1
     path_loss_exponent = 0
@@ -240,7 +238,7 @@ def site_specific_below_rooftop_NLoS():
         path_loss_root = ctk.CTkToplevel(root)
         path_loss_root.geometry("350x300")
         path_loss_root.title("Path Loss")
-        nonlocal path_loss, l_c, l_att, variance
+        nonlocal path_loss, l_c, l_att
         path_loss = -1
         if 0.8 <= f <= 2:
             reflection_path_loss = 20 * math.log(x1 + x2, 10) + x1 * x2 * (
@@ -272,33 +270,7 @@ def site_specific_below_rooftop_NLoS():
                 note_label_3.pack()
                 return
             path_loss = los_loss + l_c + l_att
-        variance = math.pow(10, -1 * (path_loss / 10))
-        path_loss_text = "Path Loss: " + str(path_loss) + " dB"
-        path_loss_label = ctk.CTkLabel(path_loss_root, text=path_loss_text)
-        path_loss_label.pack()
-        run_label = ctk.CTkLabel(path_loss_root, text="Please select number of monte-carlo runs:")
-        run_combo = ttk.Combobox(path_loss_root, values=list(range(1, 10)))
-        run_combo['state'] = 'readonly'
-        run_combo.current(0)
-        run_combo.bind("<<ComboboxSelected>>",
-                       lambda event: run_click(event, current_root=path_loss_root, num=run_combo.get()))
-        run_label.pack()
-        run_combo.pack()
-
-        def run_click(event, current_root, num):
-            runs = int(num)
-            coefficients_label = ctk.CTkLabel(current_root, text="Channel Coefficients are: ")
-            coefficients_label.pack()
-            np.random.seed(0)
-            channel_coefficients = []
-            for i in range(1, runs + 1):
-                h = math.sqrt(variance) * complex(np.random.randn(1, 1), np.conj(np.random.randn(1, 1)))
-                channel_coefficients.append(h)
-                h_label = ctk.CTkLabel(current_root, text="h(" + str(i) + "): " + str(h))
-                h_label.pack()
-            io.savemat('channel_coefficients_site_specific_below_rooftop_NLoS_loss.mat',
-                       {"channel_coefficients": channel_coefficients})
-            rate_computation(channel_coefficients, runs, current_root)
+        calculatePathLossAndCoefficients(path_loss, "site_specific_below_rooftop_NLoS", path_loss_root)
 
     e_label = ctk.CTkLabel(root, text="Please select environment type:", text_font=("Roboto", 11))
     e_combo = ttk.Combobox(root, values=environment_options)

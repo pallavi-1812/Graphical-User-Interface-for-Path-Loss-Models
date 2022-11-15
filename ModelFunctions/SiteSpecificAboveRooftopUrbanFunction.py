@@ -2,9 +2,7 @@ from tkinter import *
 from tkinter import ttk
 import customtkinter as ctk
 import math
-import numpy as np
-from scipy import io
-from GUIs.ModelFunctions.Functions.rateLevel import rate_computation
+from GUIs.ModelFunctions.Functions.findCoefficients import calculatePathLossAndCoefficients
 
 
 def site_specific_above_rooftop_urban():
@@ -17,7 +15,6 @@ def site_specific_above_rooftop_urban():
         "metropolitan centers"
     ]
     path_loss = 0
-    variance = 0
     street_orientation_factor = 0
 
     def avg_height_click(event):
@@ -85,7 +82,7 @@ def site_specific_above_rooftop_urban():
         path_loss_root = ctk.CTkToplevel(root)
         path_loss_root.geometry("350x300")
         path_loss_root.title("Path Loss")
-        nonlocal path_loss, variance, street_orientation_factor
+        nonlocal path_loss, street_orientation_factor
         f = float(f_combo.get())
         d = float(d_combo.get())
         h1 = float(height_1.get())
@@ -133,33 +130,7 @@ def site_specific_above_rooftop_urban():
             path_loss = bf_loss + rts_loss + msd_loss
         else:
             path_loss = bf_loss
-        variance = math.pow(10, -1 * (path_loss / 10))
-        path_loss_text = "Path Loss: " + str(path_loss) + " dB"
-        path_loss_label = ctk.CTkLabel(path_loss_root, text=path_loss_text)
-        path_loss_label.pack()
-        run_label = ctk.CTkLabel(path_loss_root, text="Please select number of monte-carlo runs:")
-        run_combo = ttk.Combobox(path_loss_root, values=list(range(1, 10)))
-        run_combo['state'] = 'readonly'
-        run_combo.current(0)
-        run_combo.bind("<<ComboboxSelected>>",
-                       lambda event: run_click(event, current_root=path_loss_root, num=run_combo.get()))
-        run_label.pack()
-        run_combo.pack()
-
-    def run_click(event, current_root, num):
-        runs = int(num)
-        coefficients_label = ctk.CTkLabel(current_root, text="Channel Coefficients are: ")
-        coefficients_label.pack()
-        np.random.seed(0)
-        channel_coefficients = []
-        for i in range(1, runs + 1):
-            h = math.sqrt(variance) * complex(np.random.randn(1, 1), np.conj(np.random.randn(1, 1)))
-            channel_coefficients.append(h)
-            h_label = ctk.CTkLabel(current_root, text="h(" + str(i) + "): " + str(h))
-            h_label.pack()
-        io.savemat('channel_coefficients_site_specific_above_rooftop_urban_loss.mat',
-                   {"channel_coefficients": channel_coefficients})
-        rate_computation(channel_coefficients, runs, current_root)
+        calculatePathLossAndCoefficients(path_loss, "site_specific_above_rooftop_urban", path_loss_root)
 
     height_label_1 = ctk.CTkLabel(root, text="Enter height of Station 1 in meters: ", text_font=("Roboto", 11))
     height_label_1.pack()
