@@ -42,7 +42,7 @@ def indoor_transmission():
 
     def calculate_path_loss():
         path_loss_root = ctk.CTkToplevel(root)
-        path_loss_root.geometry("350x300")
+        path_loss_root.geometry("450x500")
         path_loss_root.title("Path Loss")
         nonlocal path_loss, power_loss_coefficient, floor_penetration_loss_factor
         if area_combo.get() == "Residential":
