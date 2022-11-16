@@ -202,7 +202,7 @@ def site_specific_residential():
 
     note_label = ctk.CTkLabel(root,
                               text="Please go to terminal for entering values of corner distances after clicking on "
-                                   "path loss button", text_font=("Roboto", 11))
+                                   "path loss button", text_font=("Roboto", 11), text_color="red")
 
     path_loss_button = ctk.CTkButton(root, text="Calculate Path Loss", border_width=2,
                                      command=calculate_path_loss)

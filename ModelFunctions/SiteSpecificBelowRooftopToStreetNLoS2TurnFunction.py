@@ -195,7 +195,8 @@ def site_specific_below_rooftop_to_street_2_turn_NLoS():
         curr_loss = n_th_loss_list(turn_distances)
         if curr_loss == -1:
             path_loss_root.geometry("150x50")
-            note_label_3 = ctk.CTkLabel(path_loss_root, text="Invalid parameters", text_font=("Roboto", 11))
+            note_label_3 = ctk.CTkLabel(path_loss_root, text="Invalid parameters", text_font=("Roboto", 11),
+                                        text_color="red")
             note_label_3.pack()
             return
         curr_sum = 0
@@ -251,8 +252,7 @@ def site_specific_below_rooftop_to_street_2_turn_NLoS():
 
     note_label = ctk.CTkLabel(root,
                               text="Please go to terminal for entering values of corner distances after clicking on "
-                                   "path "
-                                   "loss button", text_font=("Roboto", 11))
+                                   "path loss button", text_font=("Roboto", 11), text_color="red")
 
     path_loss_button = ctk.CTkButton(root, text="Calculate Path Loss", border_width=2,
                                      command=calculate_path_loss)
