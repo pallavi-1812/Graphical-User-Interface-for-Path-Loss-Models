@@ -10,7 +10,7 @@ import numpy as np
 
 def site_specific_below_rooftop_LoS():
     root = ctk.CTk()
-    root.geometry("600x700")
+    root.geometry("400x500")
     root.config(bg="#FFF8EA")
     root.title("Site Specific Modal within street canyons for LoS")
 
