@@ -12,6 +12,7 @@ def site_general_below_rooftop_to_street():
     root = ctk.CTk()
     root.geometry("600x350")
     root.title("Site General for below rooftop to street level")
+    root.config(bg="#FFF8EA")
 
     path_loss = 0
     l_urban = 0
@@ -36,6 +37,7 @@ def site_general_below_rooftop_to_street():
         path_loss_root = ctk.CTkToplevel(root)
         path_loss_root.geometry("350x300")
         path_loss_root.title("Path Loss")
+        path_loss_root.config(bg="#FFECEF")
         f = float(f_combo.get())
         d = float(d_combo.get())
         p = int(percentage_combo.get())

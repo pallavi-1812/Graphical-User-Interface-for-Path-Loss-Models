@@ -11,6 +11,7 @@ import numpy as np
 def site_specific_below_rooftop_to_street_LoS():
     root = ctk.CTk()
     root.geometry("600x700")
+    root.config(bg="#FFF8EA")
     root.title("Site Specific Modal for below rooftop to street level for LoS")
 
     frequency_ranges = [
@@ -130,6 +131,7 @@ def site_specific_below_rooftop_to_street_LoS():
         path_loss_root = ctk.CTkToplevel(root)
         path_loss_root.geometry("350x300")
         path_loss_root.title("Path Loss")
+        path_loss_root.config(bg="#FFECEF")
         nonlocal path_loss, breakpoint_distance
         path_loss = -1
         if is_UHF_propagation:

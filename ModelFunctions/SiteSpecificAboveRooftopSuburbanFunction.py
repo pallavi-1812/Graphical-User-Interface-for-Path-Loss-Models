@@ -10,6 +10,7 @@ def site_specific_above_rooftop_suburban():
     root = ctk.CTk()
     root.geometry("700x700")
     root.title("Site Specific above Rooftop for suburban scenario")
+    root.config(bg="#FFF8EA")
 
     path_loss = 0
 
@@ -82,6 +83,7 @@ def site_specific_above_rooftop_suburban():
         path_loss_root = ctk.CTkToplevel(root)
         path_loss_root.geometry("350x300")
         path_loss_root.title("Path Loss")
+        path_loss_root.config(bg="#FFECEF")
         nonlocal path_loss
         w = float(street_width.get())
         phi = float(angle_combo.get())

@@ -12,6 +12,7 @@ def site_specific_below_rooftop_NLoS():
     root = ctk.CTk()
     root.geometry("550x700")
     root.title("Site Specific Modal within street canyons for NLoS")
+    root.config(bg="#FFF8EA")
 
     environment_options = [
         "Urban environment",
@@ -237,6 +238,7 @@ def site_specific_below_rooftop_NLoS():
         f = float(f_combo.get())
         path_loss_root = ctk.CTkToplevel(root)
         path_loss_root.geometry("350x300")
+        path_loss_root.config(bg="#FFECEF")
         path_loss_root.title("Path Loss")
         nonlocal path_loss, l_c, l_att
         path_loss = -1

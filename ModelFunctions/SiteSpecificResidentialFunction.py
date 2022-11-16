@@ -10,6 +10,7 @@ from GUIs.ModelFunctions.Functions.findCoefficients import calculatePathLossAndC
 def site_specific_residential():
     root = ctk.CTk()
     root.geometry("700x700")
+    root.config(bg="#FFF8EA")
     root.title("Site Specific for residential environments")
 
     path_loss = 0
@@ -74,6 +75,7 @@ def site_specific_residential():
         path_loss_root = ctk.CTkToplevel(root)
         path_loss_root.geometry("500x400")
         path_loss_root.title("Path Loss")
+        path_loss_root.config(bg="#FFECEF")
         nonlocal path_loss, path_loss_along_road, road_distances
         f = float(f_combo.get())
         d = float(d_combo.get())

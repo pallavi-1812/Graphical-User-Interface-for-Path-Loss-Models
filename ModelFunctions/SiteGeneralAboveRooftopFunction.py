@@ -9,6 +9,7 @@ def site_general_above_rooftop():
     root = ctk.CTk()
     root.geometry("430x250")
     root.title("Site General Path Loss Model for Above Rooftop")
+    root.config(bg="#FFF8EA")
 
     environment_options = [
         "Urban high-rise/LoS", "Urban low-rise/LoS", "Urban high-rise/NLoS"
@@ -42,6 +43,7 @@ def site_general_above_rooftop():
         path_loss_root = ctk.CTkToplevel(root)
         path_loss_root.geometry("350x300")
         path_loss_root.title("Path Loss")
+        path_loss_root.config(bg="#FFECEF")
         nonlocal path_loss
         path_loss = 10 * alpha * math.log(float(d_combo.get()), 10) + beta + 10 * gamma * math.log(float(f_combo.get()),
                                                                                                    10) + standard_deviation - 10

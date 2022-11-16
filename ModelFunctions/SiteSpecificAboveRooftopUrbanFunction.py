@@ -9,6 +9,7 @@ def site_specific_above_rooftop_urban():
     root = ctk.CTk()
     root.geometry("700x700")
     root.title("Site Specific above Rooftop for Urban scenario")
+    root.config(bg="#FFF8EA")
 
     environment_options = [
         "medium sized city and suburban centers with medium tree density",
@@ -82,6 +83,7 @@ def site_specific_above_rooftop_urban():
         path_loss_root = ctk.CTkToplevel(root)
         path_loss_root.geometry("350x300")
         path_loss_root.title("Path Loss")
+        path_loss_root.config(bg="#FFECEF")
         nonlocal path_loss, street_orientation_factor
         f = float(f_combo.get())
         d = float(d_combo.get())
