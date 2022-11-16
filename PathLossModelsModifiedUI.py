@@ -23,12 +23,12 @@ scenario = customtkinter.CTkButton(root, fg_color="#FFE15D", text_color="#DC3535
                                    text="SELECT SCENARIO FOR CALCULATING PATH LOSS", height=35, width=200)
 scenario.grid(row=0, column=1, pady=20)
 
-button_1 = customtkinter.CTkButton(root, fg_color="#242F9B", text_color="white", hover_color="#352F9B", width=200,
+button_1 = customtkinter.CTkButton(root, fg_color="#3B9AE1", text_color="white", hover_color="#4C9AE1", width=200,
                                    height=45,
                                    text="Indoor Transmission Loss Model", command=indoor_transmission)
 button_1.grid(row=1, column=0, padx=60, pady=70)
 
-button_2 = customtkinter.CTkButton(root, fg_color="#711A75", text_color="white", hover_color="#821A75", width=200,
+button_2 = customtkinter.CTkButton(root, fg_color="#EB1D36", text_color="white", hover_color="#FC1D36", width=200,
                                    height=45,
                                    text="Site General Model for above rooftop", command=site_general_above_rooftop)
 button_2.grid(row=2, column=0, padx=60, pady=70)
@@ -50,13 +50,13 @@ button_5 = customtkinter.CTkButton(root, fg_color="#764AF1", text_color="white",
                                    command=site_specific_below_rooftop_LoS)
 button_5.grid(row=1, column=1, padx=50, pady=70)
 
-button_6 = customtkinter.CTkButton(root, fg_color="#242F9B", text_color="white", hover_color="#352F9B", width=200,
+button_6 = customtkinter.CTkButton(root, fg_color="#3B9AE1", text_color="white", hover_color="#4C9AE1", width=200,
                                    height=45,
                                    text="Site Specific Model for below rooftop NLoS",
                                    command=site_specific_below_rooftop_NLoS)
 button_6.grid(row=2, column=1, padx=50, pady=70)
 
-button_7 = customtkinter.CTkButton(root, fg_color="#711A75", text_color="white", hover_color="#821A75", width=200,
+button_7 = customtkinter.CTkButton(root, fg_color="#EB1D36", text_color="white", hover_color="#FC1D36", width=200,
                                    height=45,
                                    text="Site Specific Model for above rooftop in Urban Scenario",
                                    command=site_specific_above_rooftop_urban)
@@ -76,21 +76,21 @@ button_9.grid(row=1, column=2, padx=50, pady=70)
 
 button_10 = customtkinter.CTkButton(root, fg_color="#764AF1", text_color="white", hover_color="#874AF1", width=200,
                                     height=45,
-                                    text="Site Specific Model from below rooftop to street level for 1 turn NLoS "
-                                         "propagation",
-                                    command=site_specific_below_rooftop_to_street_1_turn_NLoS)
+                                    text="Site Specific Model in residential environments",
+                                    command=site_specific_residential)
 button_10.grid(row=2, column=2, padx=50, pady=70)
 
-button_11 = customtkinter.CTkButton(root, fg_color="#242F9B", text_color="white", hover_color="#352F9B", width=200,
+button_11 = customtkinter.CTkButton(root, fg_color="#3B9AE1", text_color="white", hover_color="#4C9AE1", width=200,
                                     height=45,
                                     text="Site Specific Model from below rooftop to street level for 2 turn NLoS "
                                          "propagation", command=site_specific_below_rooftop_to_street_2_turn_NLoS)
 button_11.grid(row=3, column=2, padx=50, pady=70)
 
-button_12 = customtkinter.CTkButton(root, fg_color="#711A75", text_color="white", hover_color="#821A75", width=200,
+button_12 = customtkinter.CTkButton(root, fg_color="#EB1D36", text_color="white", hover_color="#FC1D36", width=200,
                                     height=45,
-                                    text="Site Specific Model in residential environments",
-                                    command=site_specific_residential)
+                                    text="Site Specific Model from below rooftop to street level for 1 turn NLoS "
+                                         "propagation",
+                                    command=site_specific_below_rooftop_to_street_1_turn_NLoS)
 button_12.grid(row=4, column=2, padx=50, pady=70)
 
 root.mainloop()
