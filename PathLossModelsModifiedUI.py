@@ -17,7 +17,7 @@ from GUIs.ModelFunctions.SiteSpecificResidentialFunction import site_specific_re
 root = customtkinter.CTk()
 root.geometry("900x500")
 root.title("Scenarios for Path Loss Models")
-root.config(bg="#DEF5E5")
+root.config(bg="#EEF2E6")
 
 scenario = customtkinter.CTkButton(root, fg_color="#FFE15D", text_color="#DC3535", hover_color="#FFE15D",
                                    text="SELECT SCENARIO FOR CALCULATING PATH LOSS", height=35, width=200)
