@@ -6,7 +6,7 @@ from GUIs.ModelFunctions.Functions.findCoefficients import calculatePathLossAndC
 
 def site_specific_below_rooftop_to_street_1_turn_NLoS():
     root = ctk.CTk()
-    root.geometry("700x700")
+    root.geometry("500x320")
     root.config(bg="#FFF8EA")
     root.title("Site Specific below rooftop to street NLoS 1 turn")
 

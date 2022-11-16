@@ -171,7 +171,7 @@ def site_specific_above_rooftop_urban():
 
     angle_label = ctk.CTkLabel(root, text="Please select angle of orientation of the street in degrees:", text_font=("Roboto", 11))
     angle_label.pack()
-    angle_combo = ttk.Combobox(root, values=list(range(0, 91)))
+    angle_combo = ttk.Combobox(root, values=list(range(1, 91)))
     angle_combo.current(0)
     angle_combo['state'] = 'readonly'
     angle_combo.set("Select angle")

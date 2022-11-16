@@ -10,7 +10,7 @@ from GUIs.ModelFunctions.Functions.findCoefficients import calculatePathLossAndC
 
 def site_general_below_rooftop_to_street():
     root = ctk.CTk()
-    root.geometry("600x350")
+    root.geometry("400x280")
     root.title("Site General for below rooftop to street level")
     root.config(bg="#FFF8EA")
 

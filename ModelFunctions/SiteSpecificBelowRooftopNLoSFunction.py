@@ -10,7 +10,7 @@ from GUIs.ModelFunctions.Functions.findCoefficients import calculatePathLossAndC
 
 def site_specific_below_rooftop_NLoS():
     root = ctk.CTk()
-    root.geometry("550x700")
+    root.geometry("550x500")
     root.title("Site Specific Modal within street canyons for NLoS")
     root.config(bg="#FFF8EA")
 
