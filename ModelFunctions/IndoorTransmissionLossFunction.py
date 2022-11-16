@@ -8,6 +8,7 @@ from GUIs.ModelFunctions.Functions.findCoefficients import calculatePathLossAndC
 def indoor_transmission():
     root = ctk.CTk()
     root.geometry("600x300")
+    root.config(bg="#FFF8EA")
     root.title("Indoor Transmission Loss Model")
 
     area_options = [
@@ -44,6 +45,7 @@ def indoor_transmission():
         path_loss_root = ctk.CTkToplevel(root)
         path_loss_root.geometry("450x500")
         path_loss_root.title("Path Loss")
+        path_loss_root.config(bg="#FFECEF")
         nonlocal path_loss, power_loss_coefficient, floor_penetration_loss_factor
         if area_combo.get() == "Residential":
             power_loss_coefficient = 28
