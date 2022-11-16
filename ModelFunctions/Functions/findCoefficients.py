@@ -13,14 +13,15 @@ def power_computation(coefficients, n, current_root, power):
     for i in range(0, n):
         p = pw * abs(coefficients[i])
         pow_level.append(p)
-        p_label = ctk.CTkLabel(current_root, text="P(" + str(i+1) + "): " + str(p) + " W")
+        p_label = ctk.CTkLabel(current_root, text="P(" + str(i + 1) + "): " + str(p) + " W")
         p_label.pack()
     for p in pow_level:
         sum_of_pow += p
     avg_pow = sum_of_pow / n
     avg_pow_text = "Average Power: " + str(avg_pow) + " W"
-    avg_pow_label = ctk.CTkLabel(current_root, text=avg_pow_text)
-    avg_pow_label.pack()
+    avg_pow_label = ctk.CTkButton(current_root, text=avg_pow_text, fg_color="#C3F8FF", text_color="#400D51",
+                                  hover_color="#C3F8FF")
+    avg_pow_label.pack(pady=10)
 
 
 def rate_computation(coefficients, n, current_root, power):
@@ -32,14 +33,15 @@ def rate_computation(coefficients, n, current_root, power):
     for i in range(0, n):
         r = bandwidth * math.log(1 + (p * abs(coefficients[i]) / sigma_sq), 2)
         rate.append(r)
-        r_label = ctk.CTkLabel(current_root, text="R(" + str(i+1) + "): " + str(r) + " bps")  # bits per second
+        r_label = ctk.CTkLabel(current_root, text="R(" + str(i + 1) + "): " + str(r) + " bps")  # bits per second
         r_label.pack()
     for r in rate:
         sum_of_rate += r
     avg_rate = sum_of_rate / n
     avg_rate_text = "Average Rate: " + str(avg_rate) + " bps"
-    avg_rate_label = ctk.CTkLabel(current_root, text=avg_rate_text)
-    avg_rate_label.pack()
+    avg_rate_label = ctk.CTkButton(current_root, text=avg_rate_text, fg_color="#C3F8FF", text_color="#400D51",
+                                   hover_color="#C3F8FF")
+    avg_rate_label.pack(pady=10)
 
 
 def run_click(current_root, num, variance, file_name, power):
@@ -62,20 +64,20 @@ def run_click(current_root, num, variance, file_name, power):
 def calculatePathLossAndCoefficients(path_loss, scenario_name, path_loss_root):
     variance = math.pow(10, -1 * (path_loss / 10))
     path_loss_text = "Path Loss: " + str(path_loss) + " dB"
-    path_loss_label = ctk.CTkLabel(path_loss_root, text=path_loss_text)
-    path_loss_label.pack()
-    power_label = ctk.CTkLabel(path_loss_root, text="Enter input power in watts:")
+    path_loss_label = ctk.CTkButton(path_loss_root, text=path_loss_text, fg_color="#C3F8FF", text_color="#400D51",
+                                    hover_color="#C3F8FF")
+    path_loss_label.pack(pady=10)
+    power_label = ctk.CTkLabel(path_loss_root, text="Enter input power in watts:", text_font=("Roboto", 11))
     power_label.pack()
     input_power = ttk.Entry(path_loss_root, textvariable=DoubleVar)
     input_power.pack()
-    run_label = ctk.CTkLabel(path_loss_root, text="Please select number of monte-carlo runs:")
+    run_label = ctk.CTkLabel(path_loss_root, text="Please select number of monte-carlo runs:", text_font=("Roboto", 11))
     run_combo = ttk.Entry(path_loss_root, textvariable=DoubleVar)
     run_label.pack()
     run_combo.pack()
     button = ctk.CTkButton(path_loss_root, text="Calculate channel coefficients, power and rate levels",
+                           fg_color="#FF577F", hover_color="#FF577F", text_color="white",
                            command=lambda: run_click(current_root=path_loss_root, num=run_combo.get(),
-                                                     variance=variance, file_name=scenario_name, power=input_power.get()))
-    button.pack(pady=10)
-
-
-
+                                                     variance=variance, file_name=scenario_name,
+                                                     power=input_power.get()))
+    button.pack(pady=15)
