@@ -49,7 +49,7 @@ def site_general_above_rooftop():
                                                                                                    10) + standard_deviation - 10
         calculatePathLossAndCoefficients(path_loss, "site_general_above_rooftop", path_loss_root)
 
-    e_label = ctk.CTkLabel(root, text="Please select environment type:")
+    e_label = ctk.CTkLabel(root, text="Please select environment type:", text_font=("Roboto", 11))
     e_label.pack(pady=2)
     e_combo = ttk.Combobox(root, values=environment_options)
     e_combo['state'] = 'readonly'
@@ -57,14 +57,14 @@ def site_general_above_rooftop():
     e_combo.bind("<<ComboboxSelected>>", e_click)
     e_combo.pack()
 
-    d_label = ctk.CTkLabel(root, text="Please select distance in meters:")
+    d_label = ctk.CTkLabel(root, text="Please select distance in meters:", text_font=("Roboto", 11))
     d_label.pack(pady=2)
     d_combo = ttk.Combobox(root, values=[""])
     d_combo['state'] = 'readonly'
     d_combo.set("Select distance")
     d_combo.pack()
 
-    f_label = ctk.CTkLabel(root, text="Please select frequency in GHz:")
+    f_label = ctk.CTkLabel(root, text="Please select frequency in GHz:", text_font=("Roboto", 11))
     f_label.pack(pady=2)
     f_combo = ttk.Combobox(root, values=[""])
     f_combo['state'] = 'readonly'
