@@ -10,7 +10,7 @@ from GUIs.ModelFunctions.Functions.findCoefficients import calculatePathLossAndC
 
 def site_general_below_rooftop_to_street():
     root = ctk.CTk()
-    root.geometry("400x280")
+    root.geometry("450x280")
     root.title("Site General for below rooftop to street level")
     root.config(bg="#FFF8EA")
 
@@ -61,37 +61,40 @@ def site_general_below_rooftop_to_street():
             path_loss = loss_los + (loss_nlos - loss_los) * (d - d_los) / w
         calculatePathLossAndCoefficients(path_loss, "site_general_below_rooftop_to_street_level", path_loss_root)
 
-    d_label = ctk.CTkLabel(root, text="Please select the distance between terminals in meters:", text_font=("Roboto", 11))
+    d_label = ctk.CTkLabel(root, text="Please select the distance between terminals in meters:",
+                           text_font=("Helvetica", 12))
     d_label.pack()
-    d_combo = ttk.Combobox(root, values=list(range(1, 3001)))
+    d_combo = ttk.Combobox(root, values=list(range(1, 3001)), font=("Helvetica", 10))
     d_combo.current(0)
     d_combo['state'] = 'readonly'
     d_combo.pack()
 
-    f_label = ctk.CTkLabel(root, text="Please select operating frequency in MHz:", text_font=("Roboto", 11))
+    f_label = ctk.CTkLabel(root, text="Please select operating frequency in MHz:", text_font=("Helvetica", 12))
     f_label.pack()
-    f_combo = ttk.Combobox(root, values=list(range(300, 3001)))
+    f_combo = ttk.Combobox(root, values=list(range(300, 3001)), font=("Helvetica", 10))
     f_combo.current(0)
     f_combo['state'] = 'readonly'
     f_combo.pack()
 
-    percentage_label = ctk.CTkLabel(root, text="Please select the required location percentage (%):", text_font=("Roboto", 11))
+    percentage_label = ctk.CTkLabel(root, text="Please select the required location percentage (%):",
+                                    text_font=("Helvetica", 12))
     percentage_label.pack()
-    percentage_combo = ttk.Combobox(root, values=list(range(1, 100)))
+    percentage_combo = ttk.Combobox(root, values=list(range(1, 100)), font=("Helvetica", 10))
     percentage_combo.current(0)
     percentage_combo['state'] = 'readonly'
     percentage_combo.pack()
 
-    e_label = ctk.CTkLabel(root, text="Please select urban category:", text_font=("Roboto", 11))
+    e_label = ctk.CTkLabel(root, text="Please select urban category:", text_font=("Helvetica", 12))
     e_label.pack()
-    e_combo = ttk.Combobox(root, values=urban_category)
+    e_combo = ttk.Combobox(root, values=urban_category, font=("Helvetica", 10))
     e_combo['state'] = 'readonly'
     e_combo.current(0)
     e_combo.bind("<<ComboboxSelected>>", e_click)
     e_combo.pack()
 
-    path_loss_button = ctk.CTkButton(root, text="Calculate Path Loss", border_width=2,
-                                     command=calculate_path_loss)
+    path_loss_button = ctk.CTkButton(root, text="Calculate Path Loss", fg_color="#7F669D", text_color="#EFF5F5",
+                                     hover_color="#8F779D", height=30, command=calculate_path_loss,
+                                     text_font=("Ariel", 12))
     path_loss_button.pack(pady=20)
 
     root.mainloop()

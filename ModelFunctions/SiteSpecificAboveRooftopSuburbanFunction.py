@@ -8,7 +8,7 @@ from GUIs.ModelFunctions.Functions.findCoefficients import calculatePathLossAndC
 
 def site_specific_above_rooftop_suburban():
     root = ctk.CTk()
-    root.geometry("550x500")
+    root.geometry("650x500")
     root.title("Site Specific above Rooftop for suburban scenario")
     root.config(bg="#FFF8EA")
 
@@ -105,67 +105,70 @@ def site_specific_above_rooftop_suburban():
             path_loss = 32.1 * math.log(d / d_rd, 10) + find_loss_d_rd(k_l_drd, f, phi, h1, h2, hr, w, wl)
         calculatePathLossAndCoefficients(path_loss, "site_specific_above_rooftop_suburban", path_loss_root)
 
-    street_width_label = ctk.CTkLabel(root, text="Enter width of the street in meters: ", text_font=("Roboto", 11))
+    street_width_label = ctk.CTkLabel(root, text="Enter width of the street in meters: ", text_font=("Helvetica", 12))
     street_width_label.pack()
-    street_width = ttk.Combobox(root, values=list(range(10, 26)))
+    street_width = ttk.Combobox(root, values=list(range(10, 26)), font=("Helvetica", 10))
     street_width.current(0)
     street_width['state'] = 'readonly'
     street_width.current(0)
     street_width.pack()
 
-    angle_label = ctk.CTkLabel(root, text="Please select angle of orientation of the street in degrees:", text_font=("Roboto", 11))
+    angle_label = ctk.CTkLabel(root, text="Please select angle of orientation of the street in degrees:",
+                               text_font=("Helvetica", 12))
     angle_label.pack()
-    angle_combo = ttk.Combobox(root, values=list(range(1, 91)))
+    angle_combo = ttk.Combobox(root, values=list(range(1, 91)), font=("Helvetica", 10))
     angle_combo.current(0)
     angle_combo['state'] = 'readonly'
     angle_combo.current(0)
     angle_combo.pack()
 
-    wavelength_label = ctk.CTkLabel(root, text="Enter carrier wavelength in meters: ", text_font=("Roboto", 11))
+    wavelength_label = ctk.CTkLabel(root, text="Enter carrier wavelength in meters: ", text_font=("Helvetica", 12))
     wavelength_label.pack()
-    wavelength = ttk.Entry(root, textvariable=DoubleVar)
+    wavelength = ttk.Entry(root, textvariable=DoubleVar, font=("Helvetica", 10))
     wavelength.pack()
 
-    avg_height_label = ctk.CTkLabel(root, text="Please select average height of buildings in meters:", text_font=("Roboto", 11))
+    avg_height_label = ctk.CTkLabel(root, text="Please select average height of buildings in meters:",
+                                    text_font=("Helvetica", 12))
     avg_height_label.pack()
-    avg_height_combo = ttk.Combobox(root, values=list(range(11, 21)))
+    avg_height_combo = ttk.Combobox(root, values=list(range(11, 21)), font=("Helvetica", 10))
     avg_height_combo.current(0)
     avg_height_combo['state'] = 'readonly'
     avg_height_combo.current(0)
     avg_height_combo.pack()
 
-    height_label_1 = ctk.CTkLabel(root, text="Enter height of Station 1 in meters: ", text_font=("Roboto", 11))
+    height_label_1 = ctk.CTkLabel(root, text="Enter height of Station 1 in meters: ", text_font=("Helvetica", 12))
     height_label_1.pack()
-    height_1 = ttk.Combobox(root, values=list(range(6, 111)))
+    height_1 = ttk.Combobox(root, values=list(range(6, 111)), font=("Helvetica", 10))
     height_1.current(0)
     height_1['state'] = 'readonly'
     height_1.pack()
 
     height_label_2 = ctk.CTkLabel(root,
                                   text="Enter height of Station 2 in meters (should be less than average height of "
-                                       "buildings): ", text_font=("Roboto", 11))
+                                       "buildings): ", text_font=("Helvetica", 12))
     height_label_2.pack()
-    height_2 = ttk.Combobox(root, values=list(range(1, 17)))
+    height_2 = ttk.Combobox(root, values=list(range(1, 17)), font=("Helvetica", 10))
     height_2.current(0)
     height_2['state'] = 'readonly'
     height_2.pack()
 
-    d_label = ctk.CTkLabel(root, text="Please select path length in meters:", text_font=("Roboto", 11))
+    d_label = ctk.CTkLabel(root, text="Please select path length in meters:", text_font=("Helvetica", 12))
     d_label.pack()
-    d_combo = ttk.Combobox(root, values=list(range(10, 1001)))
+    d_combo = ttk.Combobox(root, values=list(range(10, 1001)), font=("Helvetica", 10))
     d_combo.current(0)
     d_combo['state'] = 'readonly'
     d_combo.pack()
 
-    f_label = ctk.CTkLabel(root, text="Please select operating frequency in GHz:", text_font=("Roboto", 11))
+    f_label = ctk.CTkLabel(root, text="Please select operating frequency in GHz:", text_font=("Helvetica", 12))
     f_label.pack()
-    f_combo = ttk.Combobox(root, values=list(np.round(np.arange(0.8, 38.1, 0.1), 1)))
+    f_combo = ttk.Combobox(root, values=list(np.round(np.arange(0.8, 38.1, 0.1), 1)), font=("Helvetica", 10))
     f_combo['state'] = 'readonly'
     f_combo.current(0)
     f_combo.pack()
 
-    path_loss_button = ctk.CTkButton(root, text="Calculate Path Loss", border_width=2,
-                                     command=calculate_path_loss)
+    path_loss_button = ctk.CTkButton(root, text="Calculate Path Loss", fg_color="#7F669D", text_color="#EFF5F5",
+                                     hover_color="#8F779D", height=30, command=calculate_path_loss,
+                                     text_font=("Ariel", 12))
     path_loss_button.pack(pady=20)
 
     root.mainloop()

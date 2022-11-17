@@ -74,4 +74,4 @@ def find_water_attenuation(f, t, p_total, ro):
     term_8 = 290 * eta_1 * math.exp(0.41 * (1 - rt)) * g_func(f, 752) / math.pow(f - 752, 2)
     term_9 = 8.3328 * math.pow(10, 4) * eta_2 * math.exp(0.99 * (1 - rt)) * g_func(f, 1780) / math.pow(f - 1780, 2)
     return math.pow(f, 2) * math.pow(rt, 2.5) * ro * math.pow(10, -4) * (
-                term_9 + term_8 + term_7 + term_6 + term_5 + term_4 + term_3 + term_2 + term_1)
+            term_9 + term_8 + term_7 + term_6 + term_5 + term_4 + term_3 + term_2 + term_1)

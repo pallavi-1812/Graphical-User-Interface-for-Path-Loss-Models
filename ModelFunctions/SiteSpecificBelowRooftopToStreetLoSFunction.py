@@ -227,72 +227,73 @@ def site_specific_below_rooftop_to_street_LoS():
                 d) + attenuation_by_gases + attenuation_by_rain
         if path_loss == -1:
             path_loss_root.geometry("150x50")
-            note_label_3 = ctk.CTkLabel(path_loss_root, text="Invalid parameters", text_font=("Roboto", 11))
+            note_label_3 = ctk.CTkLabel(path_loss_root, text="Invalid parameters", text_font=("Helvetica", 12))
             note_label_3.pack()
             return
         calculatePathLossAndCoefficients(path_loss, "site_specific_below_rooftop_to_street_level_LoS", path_loss_root)
 
-    e_label = ctk.CTkLabel(root, text="Please select environment type with frequency:", text_font=("Roboto", 11))
-    e_combo = ttk.Combobox(root, values=environment_options, width=40)
+    e_label = ctk.CTkLabel(root, text="Please select environment type with frequency:", text_font=("Helvetica", 12))
+    e_combo = ttk.Combobox(root, values=environment_options, width=40, font=("Helvetica", 10))
     e_combo['state'] = 'readonly'
     e_combo.set("Select environment")
     e_combo.bind("<<ComboboxSelected>>", e_click)
 
-    range_label = ctk.CTkLabel(root, text="Please select frequency range:", text_font=("Roboto", 11))
+    range_label = ctk.CTkLabel(root, text="Please select frequency range:", text_font=("Helvetica", 12))
     range_label.pack()
-    range_combo = ttk.Combobox(root, values=frequency_ranges, width=30)
+    range_combo = ttk.Combobox(root, values=frequency_ranges, width=30, font=("Helvetica", 10))
     range_combo['state'] = 'readonly'
     range_combo.set("Select frequency range")
     range_combo.bind("<<ComboboxSelected>>", range_click)
     range_combo.pack()
 
     # 300 MHz - 3 GHz : UHF, 3 GHz - 30 GHz : SHF (here, upto 15 GHz), 30 GHz - 300 GHz (here, 100 GHz) : EHF
-    f_label = ctk.CTkLabel(root, text="Please select operating frequency in GHz:", text_font=("Roboto", 11))
+    f_label = ctk.CTkLabel(root, text="Please select operating frequency in GHz:", text_font=("Helvetica", 12))
     f_label.pack()
-    f_combo = ttk.Combobox(root, values=[])
+    f_combo = ttk.Combobox(root, values=[], font=("Helvetica", 10))
     f_combo['state'] = 'readonly'
     f_combo.set("Select frequency")
     f_combo.pack()
 
-    height_label_1 = ctk.CTkLabel(root, text="Enter height of Station 1 in meters: ", text_font=("Roboto", 11))
+    height_label_1 = ctk.CTkLabel(root, text="Enter height of Station 1 in meters: ", text_font=("Helvetica", 12))
     height_label_1.pack()
-    height_1 = ttk.Combobox(root, values=list(range(1, 400)))
+    height_1 = ttk.Combobox(root, values=list(range(1, 400)), font=("Helvetica", 10))
     height_1['state'] = 'readonly'
     height_1.set("Select station 1 height")
     height_1.pack()
 
-    height_label_2 = ctk.CTkLabel(root, text="Enter height of Station 2 in meters: ", text_font=("Roboto", 11))
+    height_label_2 = ctk.CTkLabel(root, text="Enter height of Station 2 in meters: ", text_font=("Helvetica", 12))
     height_label_2.pack()
-    height_2 = ttk.Combobox(root, values=list(range(1, 400)))
+    height_2 = ttk.Combobox(root, values=list(range(1, 400)), font=("Helvetica", 10))
     height_2['state'] = 'readonly'
     height_2.set("Select station 2 height")
     height_2.pack()
 
-    distance_label = ctk.CTkLabel(root, text="Enter distance from Station 1 to Station 2 in meters: ", text_font=("Roboto", 11))
+    distance_label = ctk.CTkLabel(root, text="Enter distance from Station 1 to Station 2 in meters: ",
+                                  text_font=("Helvetica", 12))
     distance_label.pack()
-    distance = ttk.Entry(root, textvariable=DoubleVar)
+    distance = ttk.Entry(root, textvariable=DoubleVar, font=("Helvetica", 10))
     distance.pack()
 
-    traffic_label = ctk.CTkLabel(root, text="Please select traffic conditions:", text_font=("Roboto", 11))
-    traffic_combo = ttk.Combobox(root, values=["Heavy Traffic", "Light Traffic"])
+    traffic_label = ctk.CTkLabel(root, text="Please select traffic conditions:", text_font=("Helvetica", 12))
+    traffic_combo = ttk.Combobox(root, values=["Heavy Traffic", "Light Traffic"], font=("Helvetica", 10))
     traffic_combo['state'] = 'readonly'
     traffic_combo.current(0)
 
-    wavelength_label = ctk.CTkLabel(root, text="Enter carrier wavelength in meters: ", text_font=("Roboto", 11))
-    wavelength = ttk.Entry(root, textvariable=DoubleVar)
+    wavelength_label = ctk.CTkLabel(root, text="Enter carrier wavelength in meters: ", text_font=("Helvetica", 12))
+    wavelength = ttk.Entry(root, textvariable=DoubleVar, font=("Helvetica", 10))
 
-    temp_label = ctk.CTkLabel(root, text="Enter mean temperature in celsius: ", text_font=("Roboto", 11))
-    temp = ttk.Entry(root, textvariable=DoubleVar)
+    temp_label = ctk.CTkLabel(root, text="Enter mean temperature in celsius: ", text_font=("Helvetica", 12))
+    temp = ttk.Entry(root, textvariable=DoubleVar, font=("Helvetica", 10))
 
-    density_label = ctk.CTkLabel(root, text="Enter water vapour density in g/m3: ", text_font=("Roboto", 11))
-    density = ttk.Entry(root, textvariable=DoubleVar)
+    density_label = ctk.CTkLabel(root, text="Enter water vapour density in g/m3: ", text_font=("Helvetica", 12))
+    density = ttk.Entry(root, textvariable=DoubleVar, font=("Helvetica", 10))
 
-    p_total_label = ctk.CTkLabel(root, text="Enter total air pressure in hPa: ", text_font=("Roboto", 11))
-    p_total = ttk.Entry(root, textvariable=DoubleVar)
+    p_total_label = ctk.CTkLabel(root, text="Enter total air pressure in hPa: ", text_font=("Helvetica", 12))
+    p_total = ttk.Entry(root, textvariable=DoubleVar, font=("Helvetica", 10))
 
-    path_loss_button = ctk.CTkButton(root, text="Calculate Path Loss", border_width=2,
-                                     command=calculate_path_loss)
+    path_loss_button = ctk.CTkButton(root, text="Calculate Path Loss", fg_color="#7F669D", text_color="#EFF5F5",
+                                     hover_color="#8F779D", height=30, command=calculate_path_loss,
+                                     text_font=("Ariel", 12))
     path_loss_button.pack(pady=20)
 
     root.mainloop()
-

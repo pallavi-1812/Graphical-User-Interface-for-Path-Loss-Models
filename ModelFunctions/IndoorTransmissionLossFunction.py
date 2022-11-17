@@ -75,38 +75,39 @@ def indoor_transmission():
                 10) + floor_penetration_loss_factor
         calculatePathLossAndCoefficients(path_loss, "indoor_transmission", path_loss_root)
 
-    area_label = ctk.CTkLabel(root, text="Please select area:", text_font=("Roboto", 11))
+    area_label = ctk.CTkLabel(root, text="Please select area:", text_font=("Helvetica", 12))
     area_label.pack(pady=2)
-    area_combo = ttk.Combobox(root, values=area_options)
+    area_combo = ttk.Combobox(root, values=area_options, font=("Helvetica", 10))
     area_combo['state'] = 'readonly'
     area_combo.set("Select area")
     area_combo.bind("<<ComboboxSelected>>", area_click)
     area_combo.pack()
 
-    num_label = ctk.CTkLabel(root, text="Please select number of floors:", text_font=("Roboto", 11))
+    num_label = ctk.CTkLabel(root, text="Please select number of floors:", text_font=("Helvetica", 12))
     num_label.pack(pady=2)
-    num_combo = ttk.Combobox(root, values=[""])
+    num_combo = ttk.Combobox(root, values=[""], font=("Helvetica", 10))
     num_combo['state'] = 'readonly'
     num_combo.set("Select number of floors")
     num_combo.pack()
 
     d_label = ctk.CTkLabel(root, text="Please select separation distance between the BS-UE in meters:",
-                           text_font=("Roboto", 11))
+                           text_font=("Helvetica", 12))
     d_label.pack(pady=2)
-    d_combo = ttk.Combobox(root, values=list(range(1, 101)))
+    d_combo = ttk.Combobox(root, values=list(range(1, 101)), font=("Helvetica", 10))
     d_combo['state'] = 'readonly'
     d_combo.set("Select distance")
     d_combo.pack()
 
-    f_label = ctk.CTkLabel(root, text="Please select frequency in GHz:", text_font=("Roboto", 11))
+    f_label = ctk.CTkLabel(root, text="Please select frequency in GHz:", text_font=("Helvetica", 12))
     f_label.pack(pady=2)
-    f_combo = ttk.Combobox(root, values=[""])
+    f_combo = ttk.Combobox(root, values=[""], font=("Helvetica", 10))
     f_combo['state'] = 'readonly'
     f_combo.set("Select frequency")
     f_combo.pack()
 
-    path_loss_button = ctk.CTkButton(root, text="Calculate Path Loss", border_width=2,
-                                     command=calculate_path_loss)
+    path_loss_button = ctk.CTkButton(root, text="Calculate Path Loss", fg_color="#7F669D", text_color="#EFF5F5",
+                                     hover_color="#8F779D", height=30, command=calculate_path_loss,
+                                     text_font=("Ariel", 12))
     path_loss_button.pack(pady=20)
 
     root.mainloop()

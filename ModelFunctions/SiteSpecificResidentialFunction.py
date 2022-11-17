@@ -9,7 +9,7 @@ from GUIs.ModelFunctions.Functions.findCoefficients import calculatePathLossAndC
 
 def site_specific_residential():
     root = ctk.CTk()
-    root.geometry("700x700")
+    root.geometry("750x700")
     root.config(bg="#FFF8EA")
     root.title("Site Specific for residential environments")
 
@@ -106,106 +106,111 @@ def site_specific_residential():
                                                                                                                     over_roof_propagation_loss / 10))
         calculatePathLossAndCoefficients(path_loss, "site_specific_residential", path_loss_root)
 
-    d_label = ctk.CTkLabel(root, text="Please select the distance between two terminals in meters:", text_font=("Roboto", 11))
+    d_label = ctk.CTkLabel(root, text="Please select the distance between two terminals in meters:",
+                           text_font=("Helvetica", 12))
     d_label.pack()
-    d_combo = ttk.Combobox(root, values=list(range(1, 1001)))
+    d_combo = ttk.Combobox(root, values=list(range(1, 1001)), font=("Helvetica", 10))
     d_combo.current(0)
     d_combo['state'] = 'readonly'
     d_combo.pack()
 
-    f_label = ctk.CTkLabel(root, text="Please select operating frequency in GHz:", text_font=("Roboto", 11))
+    f_label = ctk.CTkLabel(root, text="Please select operating frequency in GHz:", text_font=("Helvetica", 12))
     f_label.pack()
-    f_combo = ttk.Combobox(root, values=list(range(2, 27)))
+    f_combo = ttk.Combobox(root, values=list(range(2, 27)), font=("Helvetica", 10))
     f_combo.current(0)
     f_combo['state'] = 'readonly'
     f_combo.pack()
 
-    wavelength_label = ctk.CTkLabel(root, text="Enter carrier wavelength in meters: ", text_font=("Roboto", 11))
+    wavelength_label = ctk.CTkLabel(root, text="Enter carrier wavelength in meters: ", text_font=("Helvetica", 12))
     wavelength_label.pack()
-    wavelength = ttk.Entry(root, textvariable=DoubleVar)
+    wavelength = ttk.Entry(root, textvariable=DoubleVar, font=("Helvetica", 10))
     wavelength.pack()
 
     h_b_tx_label = ctk.CTkLabel(root,
                                 text="Please select height of nearest building from transmitter in receiver direction "
                                      "in "
-                                     "meters:", text_font=("Roboto", 11))
+                                     "meters:", text_font=("Helvetica", 12))
     h_b_tx_label.pack()
-    h_b_tx_combo = ttk.Entry(root, textvariable=DoubleVar)
+    h_b_tx_combo = ttk.Entry(root, textvariable=DoubleVar, font=("Helvetica", 10))
     h_b_tx_combo.pack()
 
     h_b_rx_label = ctk.CTkLabel(root,
                                 text="Please select height of nearest building from receiver in transmitter direction "
                                      "in "
-                                     "meters:", text_font=("Roboto", 11))
+                                     "meters:", text_font=("Helvetica", 12))
     h_b_rx_label.pack()
-    h_b_rx_combo = ttk.Entry(root, textvariable=DoubleVar)
+    h_b_rx_combo = ttk.Entry(root, textvariable=DoubleVar, font=("Helvetica", 10))
     h_b_rx_combo.pack()
 
-    h_rx_label = ctk.CTkLabel(root, text="Please select receiver antenna height in meters:", text_font=("Roboto", 11))
+    h_rx_label = ctk.CTkLabel(root, text="Please select receiver antenna height in meters:",
+                              text_font=("Helvetica", 12))
     h_rx_label.pack()
-    h_rx_combo = ttk.Combobox(root, values=list(np.round(np.arange(1.2, 6.1, 0.1), 1)))
+    h_rx_combo = ttk.Combobox(root, values=list(np.round(np.arange(1.2, 6.1, 0.1), 1)), font=("Helvetica", 10))
     h_rx_combo.current(0)
     h_rx_combo['state'] = 'readonly'
     h_rx_combo.pack()
 
-    h_tx_label = ctk.CTkLabel(root, text="Please select transmitter antenna height in meters:", text_font=("Roboto", 11))
+    h_tx_label = ctk.CTkLabel(root, text="Please select transmitter antenna height in meters:",
+                              text_font=("Helvetica", 12))
     h_tx_label.pack()
-    h_tx_combo = ttk.Combobox(root, values=list(np.round(np.arange(1.2, 6.1, 0.1), 1)))
+    h_tx_combo = ttk.Combobox(root, values=list(np.round(np.arange(1.2, 6.1, 0.1), 1)), font=("Helvetica", 10))
     h_tx_combo.current(0)
     h_tx_combo['state'] = 'readonly'
     h_tx_combo.pack()
 
     a_label = ctk.CTkLabel(root,
                            text="Please select distance between transmitter and nearest building from transmitter in "
-                                "meters:", text_font=("Roboto", 11))
+                                "meters:", text_font=("Helvetica", 12))
     a_label.pack()
-    a_combo = ttk.Entry(root, textvariable=DoubleVar)
+    a_combo = ttk.Entry(root, textvariable=DoubleVar, font=("Helvetica", 10))
     a_combo.pack()
 
     b_label = ctk.CTkLabel(root,
                            text="Please select distance between nearest buildings from transmitter and receiver in "
-                                "meters:", text_font=("Roboto", 11))
+                                "meters:", text_font=("Helvetica", 12))
     b_label.pack()
-    b_combo = ttk.Entry(root, textvariable=DoubleVar)
+    b_combo = ttk.Entry(root, textvariable=DoubleVar, font=("Helvetica", 10))
     b_combo.pack()
 
     c_label = ctk.CTkLabel(root,
-                           text="Please select distance between receiver and nearest building from receiver in meters:", text_font=("Roboto", 11))
+                           text="Please select distance between receiver and nearest building from receiver in meters:",
+                           text_font=("Helvetica", 12))
     c_label.pack()
-    c_combo = ttk.Entry(root, textvariable=DoubleVar)
+    c_combo = ttk.Entry(root, textvariable=DoubleVar, font=("Helvetica", 10))
     c_combo.pack()
 
-    b_d_label = ctk.CTkLabel(root, text="Enter building density in buildings/km2: ", text_font=("Roboto", 11))
+    b_d_label = ctk.CTkLabel(root, text="Enter building density in buildings/km2: ", text_font=("Helvetica", 12))
     b_d_label.pack()
-    b_d_input = ttk.Entry(root, textvariable=DoubleVar)
+    b_d_input = ttk.Entry(root, textvariable=DoubleVar, font=("Helvetica", 10))
     b_d_input.pack()
 
     avg_building_h_label = ctk.CTkLabel(root,
                                         text="Enter average building height of the buildings with less than 3 stories "
-                                             "in meters: (less than 6 meters)", text_font=("Roboto", 11))
+                                             "in meters: (less than 6 meters)", text_font=("Helvetica", 12))
     avg_building_h_label.pack()
-    avg_building_h_input = ttk.Entry(root, textvariable=DoubleVar)
+    avg_building_h_input = ttk.Entry(root, textvariable=DoubleVar, font=("Helvetica", 10))
     avg_building_h_input.pack()
 
-    corner_label = ctk.CTkLabel(root, text="Select corner", text_font=("Roboto", 11))
+    corner_label = ctk.CTkLabel(root, text="Select corner", text_font=("Helvetica", 12))
     corner_label.pack()
-    corner_combo = ttk.Combobox(root, values=["before corner", "after corner"])
+    corner_combo = ttk.Combobox(root, values=["before corner", "after corner"], font=("Helvetica", 10))
     corner_combo['state'] = 'readonly'
     corner_combo.current(0)
     corner_combo.bind("<<ComboboxSelected>>", corner_click)
     corner_combo.pack()
 
-    num_of_corners_label_1 = ctk.CTkLabel(root, text="Please select number of corners", text_font=("Roboto", 11))
-    num_of_corners = ttk.Combobox(root, values=list(range(1, 5)))
+    num_of_corners_label_1 = ctk.CTkLabel(root, text="Please select number of corners", text_font=("Helvetica", 12))
+    num_of_corners = ttk.Combobox(root, values=list(range(1, 5)), font=("Helvetica", 10))
     num_of_corners['state'] = 'readonly'
     num_of_corners.current(0)
 
     note_label = ctk.CTkLabel(root,
                               text="Please go to terminal for entering values of corner distances after clicking on "
-                                   "path loss button", text_font=("Roboto", 11), text_color="red")
+                                   "path loss button", text_font=("Helvetica", 12), text_color="red")
 
-    path_loss_button = ctk.CTkButton(root, text="Calculate Path Loss", border_width=2,
-                                     command=calculate_path_loss)
+    path_loss_button = ctk.CTkButton(root, text="Calculate Path Loss", fg_color="#7F669D", text_color="#EFF5F5",
+                                     hover_color="#8F779D", height=30, command=calculate_path_loss,
+                                     text_font=("Ariel", 12))
     path_loss_button.pack(pady=20)
 
     root.mainloop()
