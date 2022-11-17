@@ -18,7 +18,7 @@ def power_computation(coefficients, n, current_root, power):
     avg_pow = sum_of_pow / n
     avg_pow_text = "Average Power: " + str(avg_pow) + " W"
     avg_pow_label = ctk.CTkButton(current_root, text=avg_pow_text, fg_color="#C3F8FF", text_color="#400D51",
-                                  hover_color="#C3F8FF")
+                                  hover_color="#C3F8FF", text_font=("Helvetica", 12))
     avg_pow_label.pack(pady=7)
 
 
@@ -36,7 +36,7 @@ def rate_computation(coefficients, n, current_root, power):
     avg_rate = sum_of_rate / n
     avg_rate_text = "Average Rate: " + str(avg_rate) + " bps"
     avg_rate_label = ctk.CTkButton(current_root, text=avg_rate_text, fg_color="#C3F8FF", text_color="#400D51",
-                                   hover_color="#C3F8FF")
+                                   hover_color="#C3F8FF", text_font=("Helvetica", 12))
     avg_rate_label.pack(pady=10)
 
 
@@ -62,13 +62,14 @@ def calculatePathLossAndCoefficients(path_loss, scenario_name, path_loss_root):
     variance = math.pow(10, -1 * (path_loss / 10))
     path_loss_text = "Path Loss: " + str(path_loss) + " dB"
     path_loss_label = ctk.CTkButton(path_loss_root, text=path_loss_text, fg_color="#C3F8FF", text_color="#400D51",
-                                    hover_color="#C3F8FF")
+                                    hover_color="#C3F8FF", text_font=("Helvetica", 12))
     path_loss_label.pack(pady=10)
-    power_label = ctk.CTkLabel(path_loss_root, text="Enter input power in watts:", text_font=("Roboto", 11))
+    power_label = ctk.CTkLabel(path_loss_root, text="Enter input power in watts:", text_font=("Helvetica", 12))
     power_label.pack()
     input_power = ttk.Entry(path_loss_root, textvariable=DoubleVar)
     input_power.pack()
-    run_label = ctk.CTkLabel(path_loss_root, text="Please select number of monte-carlo runs:", text_font=("Roboto", 11))
+    run_label = ctk.CTkLabel(path_loss_root, text="Please select number of monte-carlo runs:",
+                             text_font=("Helvetica", 12))
     run_combo = ttk.Entry(path_loss_root, textvariable=DoubleVar)
     run_label.pack()
     run_combo.pack()
