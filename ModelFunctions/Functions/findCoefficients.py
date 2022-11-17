@@ -13,15 +13,13 @@ def power_computation(coefficients, n, current_root, power):
     for i in range(0, n):
         p = pw * abs(coefficients[i])
         pow_level.append(p)
-        p_label = ctk.CTkLabel(current_root, text="P(" + str(i + 1) + "): " + str(p) + " W")
-        p_label.pack()
     for p in pow_level:
         sum_of_pow += p
     avg_pow = sum_of_pow / n
     avg_pow_text = "Average Power: " + str(avg_pow) + " W"
     avg_pow_label = ctk.CTkButton(current_root, text=avg_pow_text, fg_color="#C3F8FF", text_color="#400D51",
                                   hover_color="#C3F8FF")
-    avg_pow_label.pack(pady=10)
+    avg_pow_label.pack(pady=7)
 
 
 def rate_computation(coefficients, n, current_root, power):
@@ -33,8 +31,6 @@ def rate_computation(coefficients, n, current_root, power):
     for i in range(0, n):
         r = bandwidth * math.log(1 + (p * abs(coefficients[i]) / sigma_sq), 2)
         rate.append(r)
-        r_label = ctk.CTkLabel(current_root, text="R(" + str(i + 1) + "): " + str(r) + " bps")  # bits per second
-        r_label.pack()
     for r in rate:
         sum_of_rate += r
     avg_rate = sum_of_rate / n
@@ -46,15 +42,16 @@ def rate_computation(coefficients, n, current_root, power):
 
 def run_click(current_root, num, variance, file_name, power):
     runs = int(num)
-    coefficients_label = ctk.CTkLabel(current_root, text="Channel Coefficients are: ")
-    coefficients_label.pack()
     np.random.seed(0)
     channel_coefficients = []
     for i in range(1, runs + 1):
         h = math.sqrt(variance) * complex(np.random.randn(1, 1), np.conj(np.random.randn(1, 1)))
         channel_coefficients.append(h)
-        h_label = ctk.CTkLabel(current_root, text="h(" + str(i) + "): " + str(h))
-        h_label.pack()
+    coefficients_note = "Channel Coefficients have been downloaded \ninto a matlab file in your system"
+    coefficients_note_label = ctk.CTkButton(current_root, fg_color="#FFE15D", text_color="#DC3535",
+                                            hover_color="#FFE15D",
+                                            height=25, text_font=("Ariel", 11, "bold"), text=coefficients_note)
+    coefficients_note_label.pack(pady=10)
     filename = "channel_coefficients_" + file_name + "_loss.mat"
     io.savemat(filename, {"channel_coefficients": channel_coefficients})
     rate_computation(channel_coefficients, runs, current_root, power)
