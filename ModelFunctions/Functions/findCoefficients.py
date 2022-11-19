@@ -58,7 +58,8 @@ def run_click(current_root, num, variance, file_name, power):
     power_computation(channel_coefficients, runs, current_root, power)
 
 
-def calculatePathLossAndCoefficients(path_loss, scenario_name, path_loss_root):
+def calculatePathLossAndCoefficients(loss, scenario_name, path_loss_root):
+    path_loss = round(loss, 2)
     variance = math.pow(10, -1 * (path_loss / 10))
     path_loss_text = "Path Loss: " + str(path_loss) + " dB"
     path_loss_label = ctk.CTkButton(path_loss_root, text=path_loss_text, fg_color="#C3F8FF", text_color="#400D51",
