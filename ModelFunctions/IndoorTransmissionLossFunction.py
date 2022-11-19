@@ -87,7 +87,7 @@ def indoor_transmission():
     num_combo.set("Select number of floors")
     num_combo.pack()
 
-    d_label = ctk.CTkLabel(root, text="Please select separation distance between the BS-UE in meters:",
+    d_label = ctk.CTkLabel(root, text="Please select the distance between the transmitter and receiver in meters:",
                            text_font=("Helvetica", 12))
     d_label.pack(pady=2)
     d_combo = ttk.Combobox(root, values=list(range(1, 101)), font=("Helvetica", 10))
