@@ -65,6 +65,8 @@ def indoor_transmission():
         elif area_combo.get() == "Commercial":
             power_loss_coefficient = 22
             floor_penetration_loss_factor = 6 + 3 * (n - 1)
+        if n == 0:
+            floor_penetration_loss_factor = 0
         path_loss = 20 * math.log(f, 10) + power_loss_coefficient * math.log(
             d, 10) + floor_penetration_loss_factor
         if d >= 5:
@@ -81,7 +83,7 @@ def indoor_transmission():
 
     num_label = ctk.CTkLabel(root, text="Please select number of floors:", text_font=("Helvetica", 12))
     num_label.pack(pady=2)
-    num_combo = ttk.Combobox(root, values=list(range(1, 4)), font=("Helvetica", 10))
+    num_combo = ttk.Combobox(root, values=list(range(0, 4)), font=("Helvetica", 10))
     num_combo['state'] = 'readonly'
     num_combo.set("Select number of floors")
     num_combo.pack()
@@ -89,7 +91,7 @@ def indoor_transmission():
     d_label = ctk.CTkLabel(root, text="Please select the distance between the transmitter and receiver in meters:",
                            text_font=("Helvetica", 12))
     d_label.pack(pady=2)
-    d_combo = ttk.Combobox(root, values=list(range(1, 101)), font=("Helvetica", 10))
+    d_combo = ttk.Combobox(root, values=list(range(2, 1001)), font=("Helvetica", 10))
     d_combo['state'] = 'readonly'
     d_combo.set("Select distance")
     d_combo.pack()
