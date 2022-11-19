@@ -17,8 +17,6 @@ def indoor_transmission():
         "Commercial"
     ]
 
-    power_loss_coefficient = 0
-    floor_penetration_loss_factor = 0
     path_loss = 0
 
     def area_click(event):
@@ -46,10 +44,15 @@ def indoor_transmission():
         f = float(f_combo.get())
         d = float(d_combo.get())
         n = int(num_combo.get())
-        nonlocal path_loss, power_loss_coefficient, floor_penetration_loss_factor
+        nonlocal path_loss
+        shadow_fading_constant = 0
+        power_loss_coefficient = 0
+        floor_penetration_loss_factor = 0
         if area_combo.get() == "Residential":
             power_loss_coefficient = 28
             floor_penetration_loss_factor = 4 * n
+            if d >= 3:
+                shadow_fading_constant = 8
         elif area_combo.get() == "Office":
             if f == 0.9:
                 power_loss_coefficient = 33
@@ -60,17 +63,19 @@ def indoor_transmission():
                 elif num_combo.get() == 3:
                     floor_penetration_loss_factor = 24
             else:
+                if d >= 4:
+                    shadow_fading_constant = 10
                 power_loss_coefficient = 30
                 floor_penetration_loss_factor = 15 + 4 * (n - 1)
         elif area_combo.get() == "Commercial":
             power_loss_coefficient = 22
             floor_penetration_loss_factor = 6 + 3 * (n - 1)
+            if d >= 4:
+                shadow_fading_constant = 10
         if n == 0:
             floor_penetration_loss_factor = 0
         path_loss = 20 * math.log(f, 10) + power_loss_coefficient * math.log(
-            d, 10) + floor_penetration_loss_factor
-        if d >= 5:
-            path_loss -= 28
+            d, 10) + floor_penetration_loss_factor - shadow_fading_constant
         calculatePathLossAndCoefficients(path_loss, "indoor_transmission", path_loss_root)
 
     area_label = ctk.CTkLabel(root, text="Please select area:", text_font=("Helvetica", 12))
