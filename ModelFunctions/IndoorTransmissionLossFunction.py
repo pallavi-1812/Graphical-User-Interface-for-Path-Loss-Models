@@ -24,19 +24,16 @@ def indoor_transmission():
     def area_click(event):
         d_combo.current(0)
         if area_combo.get() == "Residential":
-            num_combo.config(values=list(range(1, 10)))
             num_combo.current(0)
             f_combo.config(values=list(np.round(np.arange(1.8, 2.1, 0.1), 1)))
             f_combo.current(0)
         elif area_combo.get() == "Office":
-            num_combo.config(values=list(range(1, 4)))
             num_combo.current(0)
             f_options = list(np.round(np.arange(1.8, 2.1, 0.1), 1))
             f_options.insert(0, 0.9)
             f_combo.config(values=f_options)
             f_combo.current(0)
         elif area_combo.get() == "Commercial":
-            num_combo.config(values=list(range(1, 10)))
             num_combo.current(0)
             f_combo.config(values=list(np.round(np.arange(1.8, 2.1, 0.1), 1)))
             f_combo.current(0)
@@ -85,7 +82,7 @@ def indoor_transmission():
 
     num_label = ctk.CTkLabel(root, text="Please select number of floors:", text_font=("Helvetica", 12))
     num_label.pack(pady=2)
-    num_combo = ttk.Combobox(root, values=[""], font=("Helvetica", 10))
+    num_combo = ttk.Combobox(root, values=list(range(1, 4)), font=("Helvetica", 10))
     num_combo['state'] = 'readonly'
     num_combo.set("Select number of floors")
     num_combo.pack()
