@@ -43,12 +43,15 @@ def indoor_transmission():
         path_loss_root.geometry("450x500")
         path_loss_root.title("Path Loss")
         path_loss_root.config(bg="#FFECEF")
+        f = float(f_combo.get())
+        d = float(d_combo.get())
+        n = int(num_combo.get())
         nonlocal path_loss, power_loss_coefficient, floor_penetration_loss_factor
         if area_combo.get() == "Residential":
             power_loss_coefficient = 28
-            floor_penetration_loss_factor = 4 * int(num_combo.get())
+            floor_penetration_loss_factor = 4 * n
         elif area_combo.get() == "Office":
-            if f_combo.get() == 0.9:
+            if f == 0.9:
                 power_loss_coefficient = 33
                 if num_combo.get() == 1:
                     floor_penetration_loss_factor = 9
@@ -58,18 +61,14 @@ def indoor_transmission():
                     floor_penetration_loss_factor = 24
             else:
                 power_loss_coefficient = 30
-                floor_penetration_loss_factor = 15 + 4 * (int(num_combo.get()) - 1)
+                floor_penetration_loss_factor = 15 + 4 * (n - 1)
         elif area_combo.get() == "Commercial":
             power_loss_coefficient = 22
-            floor_penetration_loss_factor = 6 + 3 * (int(num_combo.get()) - 1)
-        if float(d_combo.get()) >= 5:
-            path_loss = 20 * math.log(float(f_combo.get()), 10) + power_loss_coefficient * math.log(
-                float(d_combo.get()),
-                10) + floor_penetration_loss_factor - 28
-        else:
-            path_loss = 20 * math.log(float(f_combo.get()), 10) + power_loss_coefficient * math.log(
-                float(d_combo.get()),
-                10) + floor_penetration_loss_factor
+            floor_penetration_loss_factor = 6 + 3 * (n - 1)
+        path_loss = 20 * math.log(f, 10) + power_loss_coefficient * math.log(
+            d, 10) + floor_penetration_loss_factor
+        if d >= 5:
+            path_loss -= 28
         calculatePathLossAndCoefficients(path_loss, "indoor_transmission", path_loss_root)
 
     area_label = ctk.CTkLabel(root, text="Please select area:", text_font=("Helvetica", 12))
