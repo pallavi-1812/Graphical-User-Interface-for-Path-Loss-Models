@@ -82,15 +82,15 @@ button_10.grid(row=2, column=2, padx=78, pady=60)
 
 button_11 = ctk.CTkButton(root, fg_color="#3B9AE1", text_color="white", hover_color="#4C9AE1",
                           height=55, text_font=("Helvetica", 12), width=350,
-                          text="Site Specific Model from Below Rooftop to\n Street Level for 2-turn NLoS "
-                               "Propagation", command=site_specific_below_rooftop_to_street_2_turn_NLoS)
+                          text="Site Specific Model from Below Rooftop to\n Street Level for 1-turn NLoS "
+                               "Propagation",
+                          command=site_specific_below_rooftop_to_street_1_turn_NLoS)
 button_11.grid(row=3, column=2, padx=78, pady=60)
 
 button_12 = ctk.CTkButton(root, fg_color="#FB2576", text_color="white", hover_color="#FC3576",
                           height=55, text_font=("Helvetica", 12), width=350,
-                          text="Site Specific Model from Below Rooftop to\n Street Level for 1-turn NLoS "
-                               "Propagation",
-                          command=site_specific_below_rooftop_to_street_1_turn_NLoS)
+                          text="Site Specific Model from Below Rooftop to\n Street Level for 2-turn NLoS "
+                               "Propagation", command=site_specific_below_rooftop_to_street_2_turn_NLoS)
 button_12.grid(row=4, column=2, padx=78, pady=60)
 
 root.mainloop()
