@@ -29,7 +29,7 @@ def site_specific_residential():
 
     def corner_click(event):
         path_loss_button.pack_forget()
-        if corner_combo.get() == "after corner":
+        if corner_combo.get() == "Yes":
             num_of_corners_label_1.pack()
             num_of_corners.pack()
             note_label.pack()
@@ -85,7 +85,7 @@ def site_specific_residential():
                                                                                                                      10) + 5.76
         loss_rbc = 20 * math.log(4 * math.pi * d / wl, 10)
         over_roof_propagation_loss = find_over_roof_propagation_loss()
-        if corner_combo.get() == "before corner":
+        if corner_combo.get() == "No":
             path_loss_along_road = loss_rbc
         else:
             road_distances = []
@@ -191,9 +191,9 @@ def site_specific_residential():
     avg_building_h_input = ttk.Entry(root, textvariable=DoubleVar, font=("Helvetica", 10))
     avg_building_h_input.pack()
 
-    corner_label = ctk.CTkLabel(root, text="Select corner", text_font=("Helvetica", 12))
+    corner_label = ctk.CTkLabel(root, text="Are corners present in the road path?", text_font=("Helvetica", 12))
     corner_label.pack()
-    corner_combo = ttk.Combobox(root, values=["before corner", "after corner"], font=("Helvetica", 10))
+    corner_combo = ttk.Combobox(root, values=["Yes", "No"], font=("Helvetica", 10))
     corner_combo['state'] = 'readonly'
     corner_combo.current(0)
     corner_combo.bind("<<ComboboxSelected>>", corner_click)
