@@ -185,7 +185,7 @@ def site_specific_below_rooftop_to_street_2_turn_NLoS():
         n = int(n_combo.get())
         sleep(2)
         for i in range(1, n + 1):
-            print("for " + str(i) + " corner: ")
+            print("for " + str(i) + " route: ")
             x_1 = input("Please enter the distance between first corner and Station 1 in meters:")
             x_2 = input("Please enter the distance between first corner and second corner in meters:")
             x_3 = input("Please enter the distance between second corner and Station 2 in meters:")
@@ -235,7 +235,7 @@ def site_specific_below_rooftop_to_street_2_turn_NLoS():
     traffic_combo['state'] = 'readonly'
     traffic_combo.current(0)
 
-    f_label = ctk.CTkLabel(root, text="Please select operating frequency in MHz:", text_font=("Helvetica", 12))
+    f_label = ctk.CTkLabel(root, text="Please select the operating frequency in MHz:", text_font=("Helvetica", 12))
     f_label.pack()
     f_combo = ttk.Combobox(root, values=[430, 750, 905, 1834, 2400, 3705, 4860], font=("Helvetica", 10))
     f_combo.current(0)
@@ -243,8 +243,8 @@ def site_specific_below_rooftop_to_street_2_turn_NLoS():
     f_combo.bind("<<ComboboxSelected>>", f_click)
     f_combo.pack()
 
-    n_label = ctk.CTkLabel(root, text="Please select for how many 2-Turn route path, you want to calculate path loss:",
-                           text_font=("Roboto", 11))
+    n_label = ctk.CTkLabel(root, text="Please select the number of possible 2-turn routes:",
+                           text_font=("Helvetica", 12))
     n_label.pack()
     n_combo = ttk.Combobox(root, values=list(range(1, 5)), font=("Helvetica", 10))
     n_combo.current(0)
