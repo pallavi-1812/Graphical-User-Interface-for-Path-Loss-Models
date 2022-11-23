@@ -129,7 +129,7 @@ def site_specific_below_rooftop_to_street_LoS():
         if range_combo.get() != "EHF propagation (Millimeter Wave)":
             f = float(f_combo.get())
         path_loss_root = ctk.CTkToplevel(root)
-        path_loss_root.geometry("350x300")
+        path_loss_root.geometry("400x400")
         path_loss_root.title("Path Loss")
         path_loss_root.config(bg="#FFECEF")
         nonlocal path_loss, breakpoint_distance

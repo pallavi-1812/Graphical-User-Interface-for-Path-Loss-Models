@@ -38,7 +38,7 @@ def indoor_transmission():
 
     def calculate_path_loss():
         path_loss_root = ctk.CTkToplevel(root)
-        path_loss_root.geometry("450x500")
+        path_loss_root.geometry("400x400")
         path_loss_root.title("Path Loss")
         path_loss_root.config(bg="#FFECEF")
         f = float(f_combo.get())

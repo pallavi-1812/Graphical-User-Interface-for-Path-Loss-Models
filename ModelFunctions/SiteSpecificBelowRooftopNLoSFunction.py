@@ -237,7 +237,7 @@ def site_specific_below_rooftop_NLoS():
         wl = float(wavelength.get())
         f = float(f_combo.get())
         path_loss_root = ctk.CTkToplevel(root)
-        path_loss_root.geometry("350x300")
+        path_loss_root.geometry("400x400")
         path_loss_root.config(bg="#FFECEF")
         path_loss_root.title("Path Loss")
         nonlocal path_loss, l_c, l_att

@@ -47,7 +47,7 @@ def site_specific_below_rooftop_to_street_1_turn_NLoS():
 
     def calculate_path_loss():
         path_loss_root = ctk.CTkToplevel(root)
-        path_loss_root.geometry("350x300")
+        path_loss_root.geometry("400x400")
         path_loss_root.title("Path Loss")
         path_loss_root.config(bg="#FFECEF")
         nonlocal path_loss
