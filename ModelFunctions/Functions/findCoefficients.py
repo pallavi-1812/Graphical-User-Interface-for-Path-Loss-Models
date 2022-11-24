@@ -16,7 +16,8 @@ def power_computation(coefficients, n, current_root, power):
     for p in pow_level:
         sum_of_pow += p
     avg_pow = sum_of_pow / n
-    avg_pow_text = "Average Power: " + str(avg_pow) + " W"
+    pow_in_dbm = 10*math.log(avg_pow, 10) + 30
+    avg_pow_text = "Average Power: " + str(round(pow_in_dbm, 2)) + " dBm"
     avg_pow_label = ctk.CTkButton(current_root, text=avg_pow_text, fg_color="#C3F8FF", text_color="#400D51",
                                   hover_color="#C3F8FF", text_font=("Helvetica", 12))
     avg_pow_label.pack(pady=7)
@@ -34,7 +35,7 @@ def rate_computation(coefficients, n, current_root, power):
     for r in rate:
         sum_of_rate += r
     avg_rate = sum_of_rate / n
-    avg_rate_text = "Average Rate: " + str(avg_rate) + " bps"
+    avg_rate_text = "Average Rate: " + str(round(avg_rate, 2)) + " mbps"
     avg_rate_label = ctk.CTkButton(current_root, text=avg_rate_text, fg_color="#C3F8FF", text_color="#400D51",
                                    hover_color="#C3F8FF", text_font=("Helvetica", 12))
     avg_rate_label.pack(pady=10)
