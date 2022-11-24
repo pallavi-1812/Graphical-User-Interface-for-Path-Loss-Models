@@ -95,14 +95,15 @@ def site_specific_above_rooftop_suburban():
         f = float(f_combo.get())
         d0 = find_d_k(0, phi, h1, h2, hr, w)
         d_rd = find_d_rd(f, phi, h1, h2, hr, w)
-        l_0_n = find_l_0_n(d, d_rd, phi, h1, h2, hr, w, wl, f)
-        k_l_drd = find_k(f, phi, h1, h2, hr, w)
         if d < d0:
             path_loss = 20 * math.log((4 * math.pi * d / wl), 10)
         elif d0 <= d <= d_rd:
+            l_0_n = find_l_0_n(d, d_rd, phi, h1, h2, hr, w, wl, f)
             path_loss = l_0_n
         elif d >= d_rd:
-            path_loss = 32.1 * math.log(d / d_rd, 10) + find_loss_d_rd(k_l_drd, f, phi, h1, h2, hr, w, wl)
+            k_l_drd = find_k(f, phi, h1, h2, hr, w)
+            loss_d_rd = find_loss_d_rd(k_l_drd, f, phi, h1, h2, hr, w, wl)
+            path_loss = 32.1 * math.log(d / d_rd, 10) + loss_d_rd
         calculatePathLossAndCoefficients(path_loss, "site_specific_above_rooftop_suburban", path_loss_root)
 
     street_width_label = ctk.CTkLabel(root, text="Enter width of the street in meters: ", text_font=("Helvetica", 12))
